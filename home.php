@@ -1,9 +1,10 @@
 <?php
 require 'Database.php';
+require 'Article.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -18,8 +19,22 @@ require 'Database.php';
         <p>En construction</p>
 
         <?php
-        $db = new Database();
-        echo $db->getConnection();
+        $article = new Article();
+        $articles = $article->getArticles();
+        while ($article = $articles->fetch()) {
+        ?>
+
+        <div>
+            <h2><a href="single.php?articleId=<?php echo htmlspecialchars($article['id']) ?>"><?php echo htmlspecialchars($article['title']); ?></a></h2>
+            <p><?php echo htmlspecialchars($article['content']); ?></p>
+            <p><?php echo htmlspecialchars($article['author']); ?></p>
+            <p>Créé le : <?php echo htmlspecialchars($article['createdAt']); ?></p>
+        </div>
+        <br>
+
+        <?php
+        }
+        $articles->closeCursor();
         ?>
     </div>
 </body>
