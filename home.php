@@ -18,17 +18,19 @@ require 'Article.php';
         <h1>Mon blog</h1>
         <p>En construction</p>
 
+
         <?php
         $article = new Article();
         $articles = $article->getArticles();
         while ($article = $articles->fetch()) {
+            var_dump($article)
         ?>
 
         <div>
-            <h2><a href="single.php?articleId=<?php echo htmlspecialchars($article['id']) ?>"><?php echo htmlspecialchars($article['title']); ?></a></h2>
-            <p><?php echo htmlspecialchars($article['content']); ?></p>
-            <p><?php echo htmlspecialchars($article['author']); ?></p>
-            <p>Créé le : <?php echo htmlspecialchars($article['createdAt']); ?></p>
+            <h2><a href="single.php?articleId=<?php echo htmlspecialchars($article->id) ?>"><?php echo htmlspecialchars($article->title); ?></a></h2>
+            <p><?php echo htmlspecialchars($article->content); ?></p>
+            <p><?php echo htmlspecialchars($article->author); ?></p>
+            <p>Créé le : <?php echo htmlspecialchars($article->createdAt); ?></p>
         </div>
         <br>
 
