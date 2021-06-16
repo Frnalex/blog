@@ -1,6 +1,7 @@
 <?php
 require 'Database.php';
 require 'Article.php';
+require 'Comment.php';
 
 ?>
 
@@ -35,6 +36,23 @@ require 'Article.php';
     ?>
 
     <a href="home.php">Retour à l'accueil</a>
+
+    <div>
+        <h3>Commentaires</h3>
+
+        <?php
+        $comment = new Comment();
+        $comments = $comment->getCommentsFromArticle($_GET['articleId']);
+        while ($comment = $comments->fetch()) {
+        ?>
+        <h4><?php echo htmlspecialchars($comment->pseudo) ?></h4>
+        <p><?php echo htmlspecialchars($comment->content) ?></p>
+        <p>Posté le <?php echo htmlspecialchars($comment->createdAt) ?></p>
+        <?php
+        }
+        $comments->closeCursor();
+        ?>
+    </div>
 
 </body>
 

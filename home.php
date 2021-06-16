@@ -23,7 +23,6 @@ require 'Article.php';
         $article = new Article();
         $articles = $article->getArticles();
         while ($article = $articles->fetch()) {
-            var_dump($article)
         ?>
 
         <div>
