@@ -1,6 +1,9 @@
 <?php
-require 'Database.php';
-require 'Article.php';
+require '../src/DAO/DAO.php';
+require '../src/DAO/ArticleDAO.php';
+
+use App\src\DAO\ArticleDAO;
+
 ?>
 
 <!DOCTYPE html>
@@ -20,13 +23,13 @@ require 'Article.php';
 
 
         <?php
-        $article = new Article();
+        $article = new ArticleDAO();
         $articles = $article->getArticles();
         while ($article = $articles->fetch()) {
         ?>
 
         <div>
-            <h2><a href="single.php?articleId=<?php echo htmlspecialchars($article->id) ?>"><?php echo htmlspecialchars($article->title); ?></a></h2>
+            <h2><a href="./single.php?articleId=<?php echo htmlspecialchars($article->id) ?>"><?php echo htmlspecialchars($article->title); ?></a></h2>
             <p><?php echo htmlspecialchars($article->content); ?></p>
             <p><?php echo htmlspecialchars($article->author); ?></p>
             <p>Créé le : <?php echo htmlspecialchars($article->createdAt); ?></p>
