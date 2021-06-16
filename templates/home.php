@@ -1,9 +1,5 @@
 <?php
-require '../config/Autoloader.php';
-
-use App\config\Autoloader;
-
-Autoloader::register();
+require '../vendor/autoload.php';
 
 use App\src\DAO\ArticleDAO;
 
