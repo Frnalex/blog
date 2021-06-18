@@ -31,7 +31,7 @@ class Router
                 } else {
                     $this->errorController->errorNotFound();
                 }
-            } else {*
+            } else {
                 $this->frontController->home();
             }
         } catch (Exception $e) {

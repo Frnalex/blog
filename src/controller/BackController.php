@@ -8,13 +8,6 @@ use App\src\model\View;
 
 class BackController
 {
-    private $view;
-
-    public function __construct()
-    {
-        $this->view = new View();
-    }
-
     public function addArticle($post)
     {
         if (isset($post['submit'])) {
