@@ -1,6 +1,8 @@
 <?php $this->title = 'Accueil' ?>
 
 
+<a href="../public/index.php?route=addArticle">Nouvel article</a>
+
 <?php
 foreach ($articles as $article) {
 ?>
