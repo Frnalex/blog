@@ -19,21 +19,15 @@ use App\src\DAO\CommentDAO;
     <h1>Mon blog</h1>
 
     <?php
-    $article = new ArticleDAO();
-    $articles = $article->getArticle($_GET['articleId']);
-    $article = $articles->fetch()
 
     ?>
     <div>
-        <h2><?= htmlspecialchars($article->title); ?></h2>
-        <p><?= htmlspecialchars($article->content); ?></p>
-        <p><?= htmlspecialchars($article->author); ?></p>
-        <p>Créé le : <?= htmlspecialchars($article->createdAt); ?></p>
+        <h2><?= htmlspecialchars($article->getTitle()); ?></h2>
+        <p><?= htmlspecialchars($article->getContent()); ?></p>
+        <p><?= htmlspecialchars($article->getAuthor()); ?></p>
+        <p>Créé le : <?= htmlspecialchars($article->getCreatedAt()); ?></p>
     </div>
     <br>
-    <?php
-    $articles->closeCursor();
-    ?>
 
     <a href="../public/index.php">Retour à l'accueil</a>
 
@@ -41,16 +35,13 @@ use App\src\DAO\CommentDAO;
         <h3>Commentaires</h3>
 
         <?php
-        $comment = new CommentDAO();
-        $comments = $comment->getCommentsFromArticle($_GET['articleId']);
-        while ($comment = $comments->fetch()) {
+        foreach ($comments as $comment) {
         ?>
-        <h4><?php echo htmlspecialchars($comment->pseudo) ?></h4>
-        <p><?php echo htmlspecialchars($comment->content) ?></p>
-        <p>Posté le <?php echo htmlspecialchars($comment->createdAt) ?></p>
+        <h4><?php echo htmlspecialchars($comment->getPseudo()) ?></h4>
+        <p><?php echo htmlspecialchars($comment->getContent()) ?></p>
+        <p>Posté le <?php echo htmlspecialchars($comment->getCreatedAt()) ?></p>
         <?php
         }
-        $comments->closeCursor();
         ?>
     </div>
 

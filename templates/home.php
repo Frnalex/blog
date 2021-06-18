@@ -1,9 +1,3 @@
-<?php
-
-use App\src\DAO\ArticleDAO;
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -21,22 +15,19 @@ use App\src\DAO\ArticleDAO;
 
 
         <?php
-        $article = new ArticleDAO();
-        $articles = $article->getArticles();
-        while ($article = $articles->fetch()) {
+        foreach ($articles as $article) {
         ?>
 
         <div>
-            <h2><a href="../public/index.php?route=article&articleId=<?php echo htmlspecialchars($article->id) ?>"><?php echo htmlspecialchars($article->title); ?></a></h2>
-            <p><?php echo htmlspecialchars($article->content); ?></p>
-            <p><?php echo htmlspecialchars($article->author); ?></p>
-            <p>Créé le : <?php echo htmlspecialchars($article->createdAt); ?></p>
+            <h2><a href="../public/index.php?route=article&articleId=<?php echo htmlspecialchars($article->getId()) ?>"><?php echo htmlspecialchars($article->getTitle()); ?></a></h2>
+            <p><?php echo htmlspecialchars($article->getContent()); ?></p>
+            <p><?php echo htmlspecialchars($article->getAuthor()); ?></p>
+            <p>Créé le : <?php echo htmlspecialchars($article->getCreatedAt()); ?></p>
         </div>
         <br>
 
         <?php
         }
-        $articles->closeCursor();
         ?>
     </div>
 </body>
