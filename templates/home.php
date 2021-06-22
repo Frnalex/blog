@@ -1,5 +1,5 @@
 <?php $this->title = 'Accueil' ?>
-
+<?php echo $this->session->show('add_article') ?>
 
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
 
