@@ -10,6 +10,10 @@ class Validation
             $articleValidation = new ArticleValidation();
             return $articleValidation->check($data);
         }
+        if ($name === 'Comment') {
+            $commentValidation = new CommentValidation();
+            return $commentValidation->check($data);
+        }
         return null;
     }
 }

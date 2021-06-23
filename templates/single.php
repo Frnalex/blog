@@ -15,8 +15,10 @@ $this->title = 'Article';
 <a href="../public/index.php">Retour à l'accueil</a>
 
 <div>
-    <h3>Commentaires</h3>
+    <h3>Ajouter un commentaire</h3>
+    <?php include('form_comment.php'); ?>
 
+    <h3>Commentaires</h3>
     <?php
     foreach ($comments as $comment) {
     ?>
