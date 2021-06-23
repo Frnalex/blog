@@ -17,6 +17,7 @@ abstract class Controller
     protected $post;
     protected $session;
     protected $validation;
+
     public function __construct()
     {
         $this->articleDAO = new ArticleDAO();

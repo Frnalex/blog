@@ -21,4 +21,5 @@ $author = isset($post) ? htmlspecialchars($post->get('author')) : '';
     <?php echo isset($errors['author']) ? $errors['author'] : "" ?>
 
     <input type="submit" value="<?php echo $submit ?>" id="submit" name="submit">
+
 </form>

@@ -11,6 +11,7 @@ $this->title = 'Article';
 <br>
 
 <a href="../public/index.php?route=editArticle&articleId=<?php echo $article->getId() ?>">Modifier</a>
+<a href="../public/index.php?route=deleteArticle&articleId=<?php echo $article->getId() ?>">Supprimer</a>
 <a href="../public/index.php">Retour à l'accueil</a>
 
 <div>

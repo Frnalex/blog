@@ -1,6 +1,7 @@
 <?php $this->title = 'Accueil' ?>
 <?php echo $this->session->show('add_article'); ?>
 <?php echo $this->session->show('edit_article'); ?>
+<?php echo $this->session->show('delete_article'); ?>
 
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
 
