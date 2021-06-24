@@ -46,11 +46,35 @@ class FrontController extends Controller
         }
     }
 
-
     public function flagComment($commentId)
     {
         $this->commentDAO->flagComment($commentId);
         $this->session->set('flag_comment', 'Le commentaire a bien été siganlé');
         header('Location: ../public/index.php');
+    }
+
+    public function register(Parameter $post)
+    {
+        if ($post->get('submit')) {
+            $errors = $this->validation->validate($post, 'User');
+
+            //Check si le pseudo existe déjà
+            if ($this->userDAO->checkUser($post)) {
+                $errors['pseudo'] = $this->userDAO->checkUser($post);
+            }
+
+            if (!$errors) {
+                $this->userDAO->register($post);
+                $this->session->set('register', 'Votre inscription a bien été effectuée');
+                header('Location: ../public/index.php');
+            } else {
+                return $this->view->render('register', [
+                    'post' => $post,
+                    'errors' => $errors,
+                ]);
+            }
+        } else {
+            return $this->view->render('register');
+        }
     }
 }

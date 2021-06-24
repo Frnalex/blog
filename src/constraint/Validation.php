@@ -14,6 +14,10 @@ class Validation
             $commentValidation = new CommentValidation();
             return $commentValidation->check($data);
         }
+        if ($name === 'User') {
+            $userValidation = new UserValidation();
+            return $userValidation->check($data);
+        }
         return null;
     }
 }
