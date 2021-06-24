@@ -32,5 +32,6 @@ $this->title = 'Article';
     <?php } else { ?>
     <p><a href="../public/index.php?route=flagComment&commentId=<?php echo $comment->getId() ?>">Signaler le commentaire</a></p>
     <?php } ?>
+    <p><a href="../public/index.php?route=deleteComment&commentId=<?php echo $comment->getId() ?>">Supprimer le commentaire</a></p>
     <?php } ?>
 </div>
