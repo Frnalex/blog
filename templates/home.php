@@ -6,10 +6,17 @@
 <?php echo $this->session->show('flag_comment'); ?>
 <?php echo $this->session->show('delete_comment'); ?>
 <?php echo $this->session->show('register'); ?>
+<?php echo $this->session->show('login'); ?>
+<?php echo $this->session->show('logout'); ?>
 
+<?php if ($this->session->get('pseudo')) { ?>
+<a href="../public/index.php?route=logout">Déconnexion</a>
+<a href="../public/index.php?route=profile">Profil</a>
+<a href="../public/index.php?route=addArticle">Nouvel article</a>
+<?php } else { ?>
 <a href="../public/index.php?route=register">Inscription</a>
 <a href="../public/index.php?route=login">Connexion</a>
-<a href="../public/index.php?route=addArticle">Nouvel article</a>
+<?php } ?>
 
 <?php
 foreach ($articles as $article) {
