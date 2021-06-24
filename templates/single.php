@@ -22,10 +22,15 @@ $this->title = 'Article';
     <?php
     foreach ($comments as $comment) {
     ?>
+
     <h4><?php echo htmlspecialchars($comment->getPseudo()) ?></h4>
     <p><?php echo htmlspecialchars($comment->getContent()) ?></p>
     <p>Posté le <?php echo htmlspecialchars($comment->getCreatedAt()) ?></p>
-    <?php
-    }
-    ?>
+
+    <?php if ($comment->isFlag()) {  ?>
+    <p>Ce commentaire a déjà été signalé</p>
+    <?php } else { ?>
+    <p><a href="../public/index.php?route=flagComment&commentId=<?php echo $comment->getId() ?>">Signaler le commentaire</a></p>
+    <?php } ?>
+    <?php } ?>
 </div>
