@@ -2,6 +2,8 @@
 <?php echo $this->session->show('add_article'); ?>
 <?php echo $this->session->show('edit_article'); ?>
 <?php echo $this->session->show('delete_article'); ?>
+<?php echo $this->session->show('unflag_comment'); ?>
+<?php echo $this->session->show('delete_comment'); ?>
 
 <h2>Articles</h2>
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
@@ -31,5 +33,28 @@
 </table>
 
 <h2>Commentaires signalés</h2>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Pseudo</td>
+        <td>Message</td>
+        <td>Date</td>
+        <td>Actions</td>
+    </tr>
+
+
+    <?php foreach ($comments as $comment) { ?>
+    <tr>
+        <td><?php echo htmlspecialchars($comment->getId()) ?></td>
+        <td><?php echo htmlspecialchars($comment->getPseudo()) ?></td>
+        <td><?php echo substr(htmlspecialchars($comment->getContent()), 0, 150) ?></td>
+        <td>Crée le : <?php echo htmlspecialchars($comment->getCreatedAt()) ?></td>
+        <td>
+            <a href="../public/index.php?route=unflagComment&commentId=<?php echo $comment->getId(); ?>">Désignaler le commentaire</a><br>
+            <a href="../public/index.php?route=deleteComment&commentId=<?php echo $comment->getId(); ?>">Supprimer le commentaire</a>
+        </td>
+    </tr>
+    <?php } ?>
+</table>
 
 <h2>Utilisateurs</h2>

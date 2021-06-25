@@ -1,7 +1,6 @@
 <?php $this->title = 'Accueil' ?>
 <?php echo $this->session->show('add_comment'); ?>
 <?php echo $this->session->show('flag_comment'); ?>
-<?php echo $this->session->show('delete_comment'); ?>
 <?php echo $this->session->show('register'); ?>
 <?php echo $this->session->show('login'); ?>
 <?php echo $this->session->show('logout'); ?>
