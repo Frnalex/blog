@@ -4,6 +4,7 @@
 <?php echo $this->session->show('delete_article'); ?>
 <?php echo $this->session->show('unflag_comment'); ?>
 <?php echo $this->session->show('delete_comment'); ?>
+<?php echo $this->session->show('delete_user'); ?>
 
 <h2>Articles</h2>
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
@@ -58,3 +59,27 @@
 </table>
 
 <h2>Utilisateurs</h2>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Pseudo</td>
+        <td>Date</td>
+        <td>Rôle</td>
+        <td>Actions</td>
+    </tr>
+
+
+    <?php foreach ($users as $user) { ?>
+    <tr>
+        <td><?php echo htmlspecialchars($user->getId()) ?></td>
+        <td><?php echo htmlspecialchars($user->getPseudo()) ?></td>
+        <td>Crée le : <?php echo htmlspecialchars($user->getCreatedAt()) ?></td>
+        <td><?php echo htmlspecialchars($user->getRole()) ?></td>
+        <td>
+            <?php if ($user->getRole() != 'admin') { ?>
+            <a href="../public/index.php?route=deleteUser&userId=<?php echo $user->getId(); ?>">Supprimer</a>
+            <?php } ?>
+        </td>
+    </tr>
+    <?php } ?>
+</table>
