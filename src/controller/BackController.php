@@ -8,7 +8,11 @@ class BackController extends Controller
 {
     public function administration()
     {
-        return $this->view->render('administration');
+        $articles = $this->articleDAO->getArticles();
+
+        return $this->view->render('administration', [
+            'articles' => $articles,
+        ]);
     }
 
 
@@ -17,9 +21,9 @@ class BackController extends Controller
         if ($post->get('submit')) {
             $errors = $this->validation->validate($post, 'Article');
             if (!$errors) {
-                $this->articleDAO->addArticle($post);
+                $this->articleDAO->addArticle($post, $this->session->get('id'));
                 $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
-                header('Location: ../public/index.php');
+                header('Location: ../public/index.php?route=administration');
             }
             return $this->view->render('add_article', [
                 'post' => $post,
@@ -38,9 +42,9 @@ class BackController extends Controller
         if ($post->get('submit')) {
             $errors = $this->validation->validate($post, 'Article');
             if (!$errors) {
-                $this->articleDAO->editArticle($post, $articleId);
+                $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
                 $this->session->set('edit_article', 'L\'article a bien été modifié');
-                header('Location: ../public/index.php');
+                header('Location: ../public/index.php?route=administration');
             }
             return $this->view->render('edit_article', [
                 'post' => $post,
@@ -63,7 +67,7 @@ class BackController extends Controller
     {
         $this->articleDAO->deleteArticle($articleId);
         $this->session->set('delete_article', "L'article a bien été supprimé");
-        header('Location: ../public/index.php');
+        header('Location: ../public/index.php?route=administration');
     }
 
 

@@ -1,7 +1,4 @@
 <?php $this->title = 'Accueil' ?>
-<?php echo $this->session->show('add_article'); ?>
-<?php echo $this->session->show('edit_article'); ?>
-<?php echo $this->session->show('delete_article'); ?>
 <?php echo $this->session->show('add_comment'); ?>
 <?php echo $this->session->show('flag_comment'); ?>
 <?php echo $this->session->show('delete_comment'); ?>
@@ -13,7 +10,6 @@
 <?php if ($this->session->get('pseudo')) { ?>
 <a href="../public/index.php?route=logout">Déconnexion</a>
 <a href="../public/index.php?route=profile">Profil</a>
-<a href="../public/index.php?route=addArticle">Nouvel article</a>
 <?php if ($this->session->get('role') === 'admin') { ?>
 <a href="../public/index.php?route=administration">Administration</a>
 <?php } ?>
