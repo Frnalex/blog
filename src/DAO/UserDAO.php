@@ -57,4 +57,11 @@ class UserDAO extends DAO
             $pseudo
         ]);
     }
+
+
+    public function deleteAccount($pseudo)
+    {
+        $sql = 'DELETE FROM user WHERE pseudo = ?';
+        $this->createQuery($sql, [$pseudo]);
+    }
 }

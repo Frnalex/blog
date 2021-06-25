@@ -94,4 +94,14 @@ class BackController extends Controller
         $this->session->set('logout', 'Vous avez bien été déconnecté');
         header('Location: ../public/index.php');
     }
+
+
+    public function deleteAccount()
+    {
+        $this->userDAO->deleteAccount($this->session->get('pseudo'));
+        $this->session->stop();
+        $this->session->start();
+        $this->session->set('delete_account', 'Votre compte a bien été supprimé');
+        header('Location: ../public/index.php');
+    }
 }

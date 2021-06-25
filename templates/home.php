@@ -8,6 +8,7 @@
 <?php echo $this->session->show('register'); ?>
 <?php echo $this->session->show('login'); ?>
 <?php echo $this->session->show('logout'); ?>
+<?php echo $this->session->show('delete_account'); ?>
 
 <?php if ($this->session->get('pseudo')) { ?>
 <a href="../public/index.php?route=logout">Déconnexion</a>
