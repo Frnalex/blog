@@ -2,14 +2,17 @@
 $this->title = 'Inscription';
 
 $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';
+$erreur_pseudo = isset($errors) &&  isset($errors['pseudo']) ? $errors['pseudo'] : '';
 ?>
+
+
 
 <div>
     <form method="POST" action="/index.php?route=register">
 
         <label for="pseudo">Pseudo</label>
         <input type="text" id="pseudo" name="pseudo" value="<?php echo $pseudo ?>">
-
+        <?php echo $erreur_pseudo ?>
         <label for="password">Mot de passe</label>
         <input type="password" id="password" name="password">
 

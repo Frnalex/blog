@@ -42,7 +42,6 @@ class CommentDAO extends DAO
         ]);
     }
 
-
     public function flagComment($commentId)
     {
         $sql = 'UPDATE comment SET flag = ? WHERE id = ?';
