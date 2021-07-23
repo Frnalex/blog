@@ -7,9 +7,6 @@ $content = isset($post) ? htmlspecialchars($post->get('content')) : '';
 
 <form method="POST" action="/index.php?route=<?php echo $route ?>&articleId=<?php echo htmlspecialchars($article->getId()) ?>">
 
-    <label for="pseudo">Pseudo</label><br>
-    <input type="text" id="pseudo" name="pseudo" value="<?php echo $pseudo ?>"><br>
-    <br>
     <label for="content">Message</label><br>
     <textarea name="content" id="content"><?php echo $content ?></textarea><br>
 

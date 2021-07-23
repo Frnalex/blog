@@ -14,22 +14,29 @@ $this->title = 'Article';
 
 <div>
     <h3>Ajouter un commentaire</h3>
-    <?php include('form_comment.php'); ?>
+    <?php if ($this->session->get('pseudo')) {
+        include('form_comment.php');
+    } else {
+    ?>
+    <a href="/index.php?route=register">Inscription</a>
+    <a href="/index.php?route=login">Connexion</a>
+    <?php } ?>
+
 
     <?php if ($comments) { ?>
-        <h3>Commentaires</h3>
-        <?php foreach ($comments as $comment) { ?>
+    <h3>Commentaires</h3>
+    <?php foreach ($comments as $comment) { ?>
 
-            <h4><?php echo htmlspecialchars($comment->getPseudo()) ?></h4>
-            <p><?php echo htmlspecialchars($comment->getContent()) ?></p>
-            <p>Posté le <?php echo htmlspecialchars($comment->getCreatedAt()) ?></p>
+    <h4><?php echo htmlspecialchars($comment->getPseudo()) ?></h4>
+    <p><?php echo htmlspecialchars($comment->getContent()) ?></p>
+    <p>Posté le <?php echo htmlspecialchars($comment->getCreatedAt()) ?></p>
 
-            <?php if ($comment->isFlag()) {  ?>
-                <p>Ce commentaire a déjà été signalé</p>
-            <?php } else { ?>
-                <p><a href="/index.php?route=flagComment&commentId=<?php echo $comment->getId() ?>">Signaler le commentaire</a></p>
-            <?php } ?>
-            <p><a href="/index.php?route=deleteComment&commentId=<?php echo $comment->getId() ?>">Supprimer le commentaire</a></p>
-        <?php } ?>
+    <?php if ($comment->isFlag()) {  ?>
+    <p>Ce commentaire a déjà été signalé</p>
+    <?php } else { ?>
+    <p><a href="/index.php?route=flagComment&commentId=<?php echo $comment->getId() ?>">Signaler le commentaire</a></p>
+    <?php } ?>
+    <p><a href="/index.php?route=deleteComment&commentId=<?php echo $comment->getId() ?>">Supprimer le commentaire</a></p>
+    <?php } ?>
     <?php } ?>
 </div>
