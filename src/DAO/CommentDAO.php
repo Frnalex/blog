@@ -23,7 +23,7 @@ class CommentDAO extends DAO
     {
         $sql = 'SELECT id, pseudo, content, createdAt, flag FROM comment WHERE article_id = ? ORDER BY createdAt DESC';
         $result = $this->createQuery($sql, [$articleId]);
-        $comment = [];
+        $comments = [];
         foreach ($result as $row) {
             $commentId = $row['id'];
             $comments[$commentId] = $this->buildObject($row);

@@ -5,7 +5,7 @@ $title = isset($post) ? htmlspecialchars($post->get('title')) : '';
 $content = isset($post) ? htmlspecialchars($post->get('content')) : '';
 ?>
 
-<form method="post" action="../public/index.php?route=<?php echo $route ?>">
+<form method="post" action="/index.php?route=<?php echo $route ?>">
 
     <label for="title">Titre</label><br>
     <input type="text" id="title" name="title" value="<?php echo $title ?>"><br>

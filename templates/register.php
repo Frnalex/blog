@@ -5,7 +5,7 @@ $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';
 ?>
 
 <div>
-    <form method="POST" action="../public/index.php?route=register">
+    <form method="POST" action="/index.php?route=register">
 
         <label for="pseudo">Pseudo</label>
         <input type="text" id="pseudo" name="pseudo" value="<?php echo $pseudo ?>">
@@ -17,5 +17,5 @@ $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';
 
     </form>
 
-    <a href="../public/index.php">Retour à l'accueil</a>
+    <a href="/index.php">Retour à l'accueil</a>
 </div>
