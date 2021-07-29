@@ -36,7 +36,11 @@ $this->title = 'Article';
     <?php } else { ?>
     <p><a href="/index.php?route=flagComment&commentId=<?php echo $comment->getId() ?>">Signaler le commentaire</a></p>
     <?php } ?>
+
+    <?php if ($this->session->get('role') === 'admin') { ?>
     <p><a href="/index.php?route=deleteComment&commentId=<?php echo $comment->getId() ?>">Supprimer le commentaire</a></p>
+    <?php } ?>
+
     <?php } ?>
     <?php } ?>
 </div>

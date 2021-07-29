@@ -28,6 +28,8 @@ class View
         echo $view;
     }
 
+
+
     private function renderFile($file, $data)
     {
         if (file_exists($file)) {

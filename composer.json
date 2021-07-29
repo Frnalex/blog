@@ -4,5 +4,8 @@
             "App\\config\\": "config/",
             "App\\src\\": "src/"
         }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
     }
 }
