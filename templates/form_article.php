@@ -15,6 +15,8 @@ $content = isset($post) ? htmlspecialchars($post->get('content')) : '';
     <textarea id="content" name="content"><?php echo $content ?></textarea><br>
     <?php echo isset($errors['content']) ? $errors['content'] : "" ?>
 
+    <input name="token" type="hidden" value="<?php echo $this->session->get('token') ?>">
+
     <input type="submit" value="<?php echo $submit ?>" id="submit" name="submit">
 
 </form>

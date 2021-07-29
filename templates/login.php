@@ -1,6 +1,8 @@
 <?php
 $this->title = 'Connexion';
 echo $this->session->show('error_login');
+echo $this->session->show('need_login');
+
 $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';
 ?>
 

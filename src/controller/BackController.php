@@ -16,7 +16,6 @@ class BackController extends Controller
         }
     }
 
-
     public function checkAdmin()
     {
         $this->checkLoggedIn();
@@ -28,6 +27,15 @@ class BackController extends Controller
         }
     }
 
+    public function checkToken($token)
+    {
+        if (!$this->session->get('token') || $this->session->get('token') != $token) {
+            $this->session->set('need_token', 'Le token a expiré');
+            header('Location: /index.php');
+        } else {
+            return true;
+        }
+    }
 
     public function administration()
     {
@@ -47,7 +55,7 @@ class BackController extends Controller
 
     public function addArticle(Parameter $post)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() && $this->checkToken($post->get('token'))) {
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Article');
                 if (!$errors) {
@@ -69,7 +77,7 @@ class BackController extends Controller
 
     public function editArticle(Parameter $post, $articleId)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() && $this->checkToken($post->get('token'))) {
             $article = $this->articleDAO->getArticle($articleId);
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Article');
@@ -107,14 +115,14 @@ class BackController extends Controller
 
     public function addComment(Parameter $post, $articleId)
     {
-        if ($this->checkLoggedIn()) {
+        if ($this->checkLoggedIn() && $this->checkToken($post->get('token'))) {
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, "Comment");
 
                 if (!$errors) {
                     $this->commentDAO->addComment($post, $articleId, $this->session->get('id'));
                     $this->session->set('add_comment', "Le nouveau commentaire a bien été ajouté");
-                    header('Location: /index.php?route=article&articleId=' . $articleId);
+                    // header('Location: /index.php?route=article&articleId=' . $articleId);
                 }
 
                 $article = $this->articleDAO->getArticle($articleId);
@@ -160,7 +168,7 @@ class BackController extends Controller
 
     public function updatePassword(Parameter $post)
     {
-        if ($this->checkLoggedIn()) {
+        if ($this->checkLoggedIn() && $this->checkToken($post->get('token'))) {
             if ($post->get('submit')) {
                 $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
                 $this->session->set('update_password', 'Le mot de passe a bien été modifié');

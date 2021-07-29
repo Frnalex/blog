@@ -9,7 +9,7 @@ $content = isset($post) ? htmlspecialchars($post->get('content')) : '';
 
     <label for="content">Message</label><br>
     <textarea name="content" id="content"><?php echo $content ?></textarea><br>
-
+    <input name="token" type="hidden" value="<?php echo $this->session->get('token') ?>">
     <input type="submit" value="<?php echo $submit ?>" id="submit" name="submit">
 
 </form>

@@ -1,5 +1,7 @@
 <?php
 $this->title = 'Article';
+
+echo $this->session->show('add_comment');
 ?>
 
 <div>
