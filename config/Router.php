@@ -54,7 +54,7 @@ class Router
                 } elseif ($route === 'logout') {
                     $this->backController->logout();
                 } elseif ($route === 'deleteAccount') {
-                    $this->backController->deleteAccount();
+                    $this->backController->deleteAccount($this->request->getGet()->get('token'));
                 } elseif ($route === 'deleteUser') {
                     $this->backController->deleteUser($this->request->getGet()->get('userId'), $this->request->getGet()->get('token'));
                 } elseif ($route === 'administration') {

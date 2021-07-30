@@ -64,7 +64,6 @@ class CommentDAO extends DAO
     public function getFlagComments()
     {
         $sql = 'SELECT comment.id, comment.content, comment.createdAt, comment.flag, user.pseudo FROM comment INNER JOIN user ON comment.user_id = user.id WHERE flag = ? ORDER BY createdAt DESC';
-        // $sql = 'SELECT id, pseudo, content, createdAt, flag FROM comment WHERE flag = ? ORDER BY createdAt DESC';
         $result = $this->createQuery($sql, [1]);
         $comments = [];
         foreach ($result as $row) {

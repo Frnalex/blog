@@ -181,9 +181,9 @@ class BackController extends Controller
     }
 
 
-    public function deleteAccount()
+    public function deleteAccount($token)
     {
-        if ($this->checkLoggedIn()) {
+        if ($this->checkLoggedIn() && $this->checkToken($token)) {
             $this->userDAO->deleteAccount($this->session->get('id'));
             $this->session->stop();
             $this->session->start();
