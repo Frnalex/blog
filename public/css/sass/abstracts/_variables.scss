@@ -11,8 +11,14 @@
     --font-secondary: 'Libre Baskerville', serif;
     --space: 8px;
     // --border-radius: 5px;
-    --container-padding: 24px;
+    --container-padding: calc(var(--space) * 3);
     --container-width: calc(100vw - var(--container-padding) * 2);
     --max-width: 1200px;
     // --vh100: calc(var(--vh, 1vh) * 100);
+}
+
+@include up(768) {
+    :root {
+        --container-padding: calc(var(--space) * 12);
+    }
 }

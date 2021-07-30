@@ -17,7 +17,9 @@
 </head>
 
 <body>
-    <div>
+
+    <?php include('header.php') ?>
+    <div class="container">
         <h1>Mon blog</h1>
         <p>En construction</p>
         <?php echo $content ?>
