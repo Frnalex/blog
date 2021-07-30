@@ -1,0 +1,28 @@
+// Flex
+// ==================
+.flex {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Grid
+// ==================
+.grid {
+    width: 100%;
+    display: grid;
+    gap: space(2);
+}
+
+.grid.grid--big {
+    gap: space(5);
+}
+.grid.grid--small {
+    gap: space(1);
+}

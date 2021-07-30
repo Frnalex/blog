@@ -9,19 +9,23 @@ class FrontController extends Controller
     public function home()
     {
         $articles = $this->articleDAO->getArticles();
-        return $this->view->render('home', [
+        return $this->view->render(
+            'home', [
             'articles' => $articles
-        ]);
+            ]
+        );
     }
 
     public function article($articleId)
     {
         $article = $this->articleDAO->getArticle($articleId);
         $comments = $this->commentDAO->getCommentsFromArticle($articleId);
-        return $this->view->render('single', [
+        return $this->view->render(
+            'single', [
             'article' => $article,
             'comments' => $comments,
-        ]);
+            ]
+        );
     }
 
     public function flagComment($commentId)
@@ -46,10 +50,12 @@ class FrontController extends Controller
                 $this->session->set('register', 'Votre inscription a bien été effectuée');
                 header('Location: /index.php');
             } else {
-                return $this->view->render('register', [
+                return $this->view->render(
+                    'register', [
                     'post' => $post,
                     'errors' => $errors,
-                ]);
+                    ]
+                );
             }
         } else {
             return $this->view->render('register');
@@ -69,9 +75,11 @@ class FrontController extends Controller
                 header('Location: /index.php');
             } else {
                 $this->session->set('error_login', 'Le pseudo ou le mot de passe sont incorrects');
-                return $this->view->render('login', [
+                return $this->view->render(
+                    'login', [
                     'post' => $post
-                ]);
+                    ]
+                );
             }
         }
         return $this->view->render('login');

@@ -1,0 +1,21 @@
+body {
+    color: var(--color-dark);
+    background: var(--color-light);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    word-break: break-word;
+    min-height: 100%;
+    margin: auto;
+}
+
+// Container
+// ==============
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: calc(50% - var(--container-width) / 2);
+    padding-right: calc(50% - var(--container-width) / 2);
+}

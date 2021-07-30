@@ -1,0 +1,18 @@
+// Variables
+// ==================
+:root {
+    --color-dark: #14141b;
+    --color-light: #ffffff;
+
+    --color-success: #83d18b;
+    --color-error: #fb5151;
+
+    --font: 'Poppins', sans-serif;
+    --font-secondary: 'Libre Baskerville', serif;
+    --space: 8px;
+    // --border-radius: 5px;
+    --container-padding: 24px;
+    --container-width: calc(100vw - var(--container-padding) * 2);
+    --max-width: 1200px;
+    // --vh100: calc(var(--vh, 1vh) * 100);
+}

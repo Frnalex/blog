@@ -35,11 +35,14 @@ class BackController extends Controller
             $comments = $this->commentDAO->getFlagComments();
             $users = $this->userDAO->getUsers();
 
-            return $this->view->render('administration', [
-                'articles' => $articles,
-                'comments' => $comments,
-                'users' => $users,
-            ]);
+            return $this->view->render(
+                'administration',
+                [
+                    'articles' => $articles,
+                    'comments' => $comments,
+                    'users' => $users,
+                ]
+            );
         }
     }
 
@@ -54,14 +57,20 @@ class BackController extends Controller
                     $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
                     header('Location: /index.php?route=administration');
                 }
-                return $this->view->render('add_article', [
-                    'post' => $post,
-                    'errors' => $errors
-                ]);
+                return $this->view->render(
+                    'add_article',
+                    [
+                        'post' => $post,
+                        'errors' => $errors
+                    ]
+                );
             }
-            return $this->view->render('add_article', [
-                'post' => $post
-            ]);
+            return $this->view->render(
+                'add_article',
+                [
+                    'post' => $post
+                ]
+            );
         }
     }
 
@@ -77,10 +86,13 @@ class BackController extends Controller
                     $this->session->set('edit_article', 'L\'article a bien été modifié');
                     header('Location: /index.php?route=administration');
                 }
-                return $this->view->render('edit_article', [
-                    'post' => $post,
-                    'errors' => $errors
-                ]);
+                return $this->view->render(
+                    'edit_article',
+                    [
+                        'post' => $post,
+                        'errors' => $errors
+                    ]
+                );
             }
 
             $post->set('id', $article->getId());
@@ -88,9 +100,12 @@ class BackController extends Controller
             $post->set('content', $article->getContent());
             $post->set('author', $article->getAuthor());
 
-            return $this->view->render('edit_article', [
-                'post' => $post
-            ]);
+            return $this->view->render(
+                'edit_article',
+                [
+                    'post' => $post
+                ]
+            );
         }
     }
 
@@ -118,12 +133,15 @@ class BackController extends Controller
 
                 $article = $this->articleDAO->getArticle($articleId);
                 $comments = $this->commentDAO->getCommentsFromArticle($articleId);
-                return $this->view->render('single', [
-                    'article' => $article,
-                    'comments' => $comments,
-                    'post' => $post,
-                    'errors' => $errors,
-                ]);
+                return $this->view->render(
+                    'single',
+                    [
+                        'article' => $article,
+                        'comments' => $comments,
+                        'post' => $post,
+                        'errors' => $errors,
+                    ]
+                );
             }
         }
     }

@@ -1,0 +1,569 @@
+:root {
+  --color-dark: #14141b;
+  --color-light: #ffffff;
+  --color-success: #83d18b;
+  --color-error: #fb5151;
+  --font: 'Poppins', sans-serif;
+  --font-secondary: 'Libre Baskerville', serif;
+  --space: 8px;
+  --container-padding: 24px;
+  --container-width: calc(100vw - var(--container-padding) * 2);
+  --max-width: 1200px;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  font-size: inherit;
+}
+
+select,
+input {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+pre {
+  font-family: monospace;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+textarea {
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+body {
+  color: var(--color-dark);
+  background: var(--color-light);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  word-break: break-word;
+  min-height: 100%;
+  margin: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: calc(50% - var(--container-width) / 2);
+  padding-right: calc(50% - var(--container-width) / 2);
+}
+
+.flex {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.grid {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  gap: calc(2 * var(--space));
+}
+
+.grid.grid--big {
+  gap: calc(5 * var(--space));
+}
+
+.grid.grid--small {
+  gap: calc(1 * var(--space));
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+body .p-0 {
+  padding: calc(0 * var(--space));
+}
+
+body .pt-0 {
+  padding-top: calc(0 * var(--space));
+}
+
+body .pb-0 {
+  padding-bottom: calc(0 * var(--space));
+}
+
+body .px-0 {
+  padding-left: calc(0 * var(--space));
+  padding-right: calc(0 * var(--space));
+}
+
+body .py-0 {
+  padding-top: calc(0 * var(--space));
+  padding-bottom: calc(0 * var(--space));
+}
+
+body .my-0 {
+  margin-top: calc(0 * var(--space));
+  margin-bottom: calc(0 * var(--space));
+}
+
+body .m-0 {
+  margin: calc(0 * var(--space));
+}
+
+body .mx-0 {
+  margin-left: calc(0 * var(--space));
+  margin-right: calc(0 * var(--space));
+}
+
+body .mt-0 {
+  margin-top: calc(0 * var(--space));
+}
+
+body .mb-0 {
+  margin-bottom: calc(0 * var(--space));
+}
+
+body .mr-0 {
+  margin-right: calc(0 * var(--space));
+}
+
+body .ml-0 {
+  margin-left: calc(0 * var(--space));
+}
+
+body .p-1 {
+  padding: calc(1 * var(--space));
+}
+
+body .pt-1 {
+  padding-top: calc(1 * var(--space));
+}
+
+body .pb-1 {
+  padding-bottom: calc(1 * var(--space));
+}
+
+body .px-1 {
+  padding-left: calc(1 * var(--space));
+  padding-right: calc(1 * var(--space));
+}
+
+body .py-1 {
+  padding-top: calc(1 * var(--space));
+  padding-bottom: calc(1 * var(--space));
+}
+
+body .my-1 {
+  margin-top: calc(1 * var(--space));
+  margin-bottom: calc(1 * var(--space));
+}
+
+body .m-1 {
+  margin: calc(1 * var(--space));
+}
+
+body .mx-1 {
+  margin-left: calc(1 * var(--space));
+  margin-right: calc(1 * var(--space));
+}
+
+body .mt-1 {
+  margin-top: calc(1 * var(--space));
+}
+
+body .mb-1 {
+  margin-bottom: calc(1 * var(--space));
+}
+
+body .mr-1 {
+  margin-right: calc(1 * var(--space));
+}
+
+body .ml-1 {
+  margin-left: calc(1 * var(--space));
+}
+
+body .p-2 {
+  padding: calc(2 * var(--space));
+}
+
+body .pt-2 {
+  padding-top: calc(2 * var(--space));
+}
+
+body .pb-2 {
+  padding-bottom: calc(2 * var(--space));
+}
+
+body .px-2 {
+  padding-left: calc(2 * var(--space));
+  padding-right: calc(2 * var(--space));
+}
+
+body .py-2 {
+  padding-top: calc(2 * var(--space));
+  padding-bottom: calc(2 * var(--space));
+}
+
+body .my-2 {
+  margin-top: calc(2 * var(--space));
+  margin-bottom: calc(2 * var(--space));
+}
+
+body .m-2 {
+  margin: calc(2 * var(--space));
+}
+
+body .mx-2 {
+  margin-left: calc(2 * var(--space));
+  margin-right: calc(2 * var(--space));
+}
+
+body .mt-2 {
+  margin-top: calc(2 * var(--space));
+}
+
+body .mb-2 {
+  margin-bottom: calc(2 * var(--space));
+}
+
+body .mr-2 {
+  margin-right: calc(2 * var(--space));
+}
+
+body .ml-2 {
+  margin-left: calc(2 * var(--space));
+}
+
+body .p-3 {
+  padding: calc(3 * var(--space));
+}
+
+body .pt-3 {
+  padding-top: calc(3 * var(--space));
+}
+
+body .pb-3 {
+  padding-bottom: calc(3 * var(--space));
+}
+
+body .px-3 {
+  padding-left: calc(3 * var(--space));
+  padding-right: calc(3 * var(--space));
+}
+
+body .py-3 {
+  padding-top: calc(3 * var(--space));
+  padding-bottom: calc(3 * var(--space));
+}
+
+body .my-3 {
+  margin-top: calc(3 * var(--space));
+  margin-bottom: calc(3 * var(--space));
+}
+
+body .m-3 {
+  margin: calc(3 * var(--space));
+}
+
+body .mx-3 {
+  margin-left: calc(3 * var(--space));
+  margin-right: calc(3 * var(--space));
+}
+
+body .mt-3 {
+  margin-top: calc(3 * var(--space));
+}
+
+body .mb-3 {
+  margin-bottom: calc(3 * var(--space));
+}
+
+body .mr-3 {
+  margin-right: calc(3 * var(--space));
+}
+
+body .ml-3 {
+  margin-left: calc(3 * var(--space));
+}
+
+body .p-4 {
+  padding: calc(4 * var(--space));
+}
+
+body .pt-4 {
+  padding-top: calc(4 * var(--space));
+}
+
+body .pb-4 {
+  padding-bottom: calc(4 * var(--space));
+}
+
+body .px-4 {
+  padding-left: calc(4 * var(--space));
+  padding-right: calc(4 * var(--space));
+}
+
+body .py-4 {
+  padding-top: calc(4 * var(--space));
+  padding-bottom: calc(4 * var(--space));
+}
+
+body .my-4 {
+  margin-top: calc(4 * var(--space));
+  margin-bottom: calc(4 * var(--space));
+}
+
+body .m-4 {
+  margin: calc(4 * var(--space));
+}
+
+body .mx-4 {
+  margin-left: calc(4 * var(--space));
+  margin-right: calc(4 * var(--space));
+}
+
+body .mt-4 {
+  margin-top: calc(4 * var(--space));
+}
+
+body .mb-4 {
+  margin-bottom: calc(4 * var(--space));
+}
+
+body .mr-4 {
+  margin-right: calc(4 * var(--space));
+}
+
+body .ml-4 {
+  margin-left: calc(4 * var(--space));
+}
+
+body .p-5 {
+  padding: calc(5 * var(--space));
+}
+
+body .pt-5 {
+  padding-top: calc(5 * var(--space));
+}
+
+body .pb-5 {
+  padding-bottom: calc(5 * var(--space));
+}
+
+body .px-5 {
+  padding-left: calc(5 * var(--space));
+  padding-right: calc(5 * var(--space));
+}
+
+body .py-5 {
+  padding-top: calc(5 * var(--space));
+  padding-bottom: calc(5 * var(--space));
+}
+
+body .my-5 {
+  margin-top: calc(5 * var(--space));
+  margin-bottom: calc(5 * var(--space));
+}
+
+body .m-5 {
+  margin: calc(5 * var(--space));
+}
+
+body .mx-5 {
+  margin-left: calc(5 * var(--space));
+  margin-right: calc(5 * var(--space));
+}
+
+body .mt-5 {
+  margin-top: calc(5 * var(--space));
+}
+
+body .mb-5 {
+  margin-bottom: calc(5 * var(--space));
+}
+
+body .mr-5 {
+  margin-right: calc(5 * var(--space));
+}
+
+body .ml-5 {
+  margin-left: calc(5 * var(--space));
+}
+/*# sourceMappingURL=main.css.map */
