@@ -1,4 +1,6 @@
 <?php
+include('set_token.php');
+
 $route = isset($post) && $post->get('id') ? 'editComment' : 'addComment';
 $submit = $route === "addComment" ? 'Ajouter' : "Mettre à jour";
 $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';

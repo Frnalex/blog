@@ -1,5 +1,8 @@
 <?php
 $this->title = 'Connexion';
+
+include('set_token.php');
+
 echo $this->session->show('error_login');
 echo $this->session->show('need_login');
 
@@ -14,6 +17,9 @@ $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';
 
         <label for="password">Mot de passe</label><br>
         <input type="password" id="password" name="password"><br>
+
+        <input name="token" type="hidden" value="<?php echo $this->session->get('token') ?>">
+
 
         <input type="submit" value="Connexion" id="submit" name="submit">
 

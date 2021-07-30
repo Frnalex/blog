@@ -27,15 +27,6 @@ class BackController extends Controller
         }
     }
 
-    public function checkToken($token)
-    {
-        if (!$this->session->get('token') || $this->session->get('token') != $token) {
-            $this->session->set('need_token', 'Le token a expiré');
-            header('Location: /index.php');
-        } else {
-            return true;
-        }
-    }
 
     public function administration()
     {
@@ -104,9 +95,9 @@ class BackController extends Controller
     }
 
 
-    public function deleteArticle($articleId)
+    public function deleteArticle($articleId, $token)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() && $this->checkToken($token)) {
             $this->articleDAO->deleteArticle($articleId);
             $this->session->set('delete_article', "L'article a bien été supprimé");
             header('Location: /index.php?route=administration');
@@ -138,9 +129,9 @@ class BackController extends Controller
     }
 
 
-    public function unflagComment($commentId)
+    public function unflagComment($commentId, $token)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() && $this->checkToken($token)) {
             $this->commentDAO->unflagComment($commentId);
             $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé');
             header('Location: /index.php?route=administration');
@@ -148,9 +139,9 @@ class BackController extends Controller
     }
 
 
-    public function deleteComment($commentId)
+    public function deleteComment($commentId, $token)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() && $this->checkToken($token)) {
             $this->commentDAO->deleteComment($commentId);
             $this->session->set('delete_comment', "Le commentaire a bien été supprimé");
             header('Location: /index.php?route=administration');
@@ -193,7 +184,7 @@ class BackController extends Controller
     public function deleteAccount()
     {
         if ($this->checkLoggedIn()) {
-            $this->userDAO->deleteAccount($this->session->get('pseudo'), $this->session->get('id'));
+            $this->userDAO->deleteAccount($this->session->get('id'));
             $this->session->stop();
             $this->session->start();
             $this->session->set('delete_account', 'Votre compte a bien été supprimé');
@@ -201,12 +192,12 @@ class BackController extends Controller
         }
     }
 
-    public function deleteUser($userId)
+    public function deleteUser($userId, $token)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() && $this->checkToken($token)) {
             $this->userDAO->deleteUser($userId);
             $this->session->set('delete_user', "L'utilisateur a bien été supprimé");
-            header('Location : ..public/index.php?route=administration');
+            header('Location: /index.php?route=administration');
         }
     }
 }

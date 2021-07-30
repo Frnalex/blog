@@ -32,4 +32,14 @@ abstract class Controller
         $this->post = $request->getPost();
         $this->session = $request->getSession();
     }
+
+    public function checkToken($token)
+    {
+        if (!$this->session->get('token') || $this->session->get('token') != $token) {
+            $this->session->set('need_token', 'Le token a expiré');
+            header('Location: /index.php');
+        } else {
+            return true;
+        }
+    }
 }

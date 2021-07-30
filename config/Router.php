@@ -34,15 +34,15 @@ class Router
                 } elseif ($route === 'editArticle') {
                     $this->backController->editArticle($this->request->getPost(), $this->request->getGet()->get('articleId'));
                 } elseif ($route === 'deleteArticle') {
-                    $this->backController->deleteArticle($this->request->getGet()->get('articleId'));
+                    $this->backController->deleteArticle($this->request->getGet()->get('articleId'), $this->request->getGet()->get('token'));
                 } elseif ($route === 'addComment') {
                     $this->backController->addComment($this->request->getPost(), $this->request->getGet()->get('articleId'));
                 } elseif ($route === 'flagComment') {
                     $this->frontController->flagComment($this->request->getGet()->get('commentId'));
                 } elseif ($route === 'unflagComment') {
-                    $this->backController->unflagComment($this->request->getGet()->get('commentId'));
+                    $this->backController->unflagComment($this->request->getGet()->get('commentId'), $this->request->getGet()->get('token'));
                 } elseif ($route === 'deleteComment') {
-                    $this->backController->deleteComment($this->request->getGet()->get('commentId'));
+                    $this->backController->deleteComment($this->request->getGet()->get('commentId'), $this->request->getGet()->get('token'));
                 } elseif ($route === 'register') {
                     $this->frontController->register($this->request->getPost());
                 } elseif ($route === 'login') {
@@ -56,7 +56,7 @@ class Router
                 } elseif ($route === 'deleteAccount') {
                     $this->backController->deleteAccount();
                 } elseif ($route === 'deleteUser') {
-                    $this->backController->deleteUser($this->request->getGet()->get('userId'));
+                    $this->backController->deleteUser($this->request->getGet()->get('userId'), $this->request->getGet()->get('token'));
                 } elseif ($route === 'administration') {
                     $this->backController->administration();
                 } else {

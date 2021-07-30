@@ -84,19 +84,24 @@ class UserDAO extends DAO
     }
 
 
-    public function deleteAccount($pseudo, $id)
+    public function deleteAccount($userId)
     {
         //supprime les commentaires
         $sql = 'DELETE FROM comment WHERE user_id = ?';
-        $this->createQuery($sql, [$id]);
+        $this->createQuery($sql, [$userId]);
 
         //supprime le compte
-        $sql = 'DELETE FROM user WHERE pseudo = ?';
-        $this->createQuery($sql, [$pseudo]);
+        $sql = 'DELETE FROM user WHERE id = ?';
+        $this->createQuery($sql, [$userId]);
     }
 
     public function deleteUser($userId)
     {
+        //supprime les commentaires
+        $sql = 'DELETE FROM comment WHERE user_id = ?';
+        $this->createQuery($sql, [$userId]);
+
+        //supprime le compte
         $sql = 'DELETE FROM user WHERE id = ?';
         $this->createQuery($sql, [$userId]);
     }

@@ -33,7 +33,7 @@ class FrontController extends Controller
 
     public function register(Parameter $post)
     {
-        if ($post->get('submit')) {
+        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
             $errors = $this->validation->validate($post, 'User');
 
             //Check si le pseudo existe déjà
@@ -58,7 +58,7 @@ class FrontController extends Controller
 
     public function login(Parameter $post)
     {
-        if ($post->get('submit')) {
+        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
             $result = $this->userDAO->login($post);
 
             if ($result && $result['isPasswordValid']) {
@@ -66,7 +66,6 @@ class FrontController extends Controller
                 $this->session->set('id', $result['result']['id']);
                 $this->session->set('role', $result['result']['name']);
                 $this->session->set('pseudo', $post->get('pseudo'));
-                $this->session->set('token', md5(time() * rand(175, 658)));
                 header('Location: /index.php');
             } else {
                 $this->session->set('error_login', 'Le pseudo ou le mot de passe sont incorrects');

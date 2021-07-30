@@ -1,4 +1,6 @@
 <?php
+include('set_token.php');
+
 $route = isset($post) && $post->get('id') ? 'editArticle&articleId=' . $post->get('id') : 'addArticle';
 $submit = $route === "addArticle" ? 'Envoyer' : "Mettre à jour";
 $title = isset($post) ? htmlspecialchars($post->get('title')) : '';

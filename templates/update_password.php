@@ -1,4 +1,9 @@
-<?php $this->title = 'Modifier mot de passe' ?>
+<?php
+$this->title = 'Modifier mot de passe';
+
+include('set_token.php');
+?>
+
 
 <div>
     <p>Le mot de passe de <?php echo $this->session->get('pseudo') ?> sera modifié</p>
