@@ -35,10 +35,11 @@ class UserDAO extends DAO
     {
         $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id) VALUES (?,?,NOW(), ?)';
         $this->createQuery(
-            $sql, [
-            $post->get('pseudo'),
-            password_hash($post->get('password'), PASSWORD_BCRYPT),
-            2,
+            $sql,
+            [
+                $post->get('pseudo'),
+                password_hash($post->get('password'), PASSWORD_BCRYPT),
+                2,
             ]
         );
     }
@@ -48,13 +49,14 @@ class UserDAO extends DAO
     {
         $sql = 'SELECT COUNT(pseudo) FROM user WHERE pseudo = ?';
         $result = $this->createQuery(
-            $sql, [
-            $post->get('pseudo')
+            $sql,
+            [
+                $post->get('pseudo')
             ]
         );
         $isUnique = $result->fetchColumn();
         if ($isUnique) {
-            return '<p>Le pseudo existe déjà</p>';
+            return 'Le pseudo existe déjà';
         }
     }
 
@@ -82,9 +84,10 @@ class UserDAO extends DAO
     {
         $sql = 'UPDATE user SET password = ? WHERE pseudo = ?';
         $this->createQuery(
-            $sql, [
-            password_hash($post->get('password'), PASSWORD_BCRYPT),
-            $pseudo
+            $sql,
+            [
+                password_hash($post->get('password'), PASSWORD_BCRYPT),
+                $pseudo
             ]
         );
     }

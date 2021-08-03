@@ -19,12 +19,14 @@
 <body>
 
     <?php include('header.php') ?>
-    <div class="container">
-        <h1>Mon blog</h1>
-        <p>En construction</p>
-        <?php echo $content ?>
-    </div>
 
+    <main class="main">
+        <div class="container">
+            <?php echo $content ?>
+        </div>
+    </main>
+
+    <?php include('footer.php') ?>
     <script src="/js/script.js"></script>
 </body>
 

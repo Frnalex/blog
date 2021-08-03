@@ -1,0 +1,24 @@
+.footer {
+    margin-top: space(6);
+    padding-top: space(6);
+    padding-bottom: space(6);
+    background-color: var(--color-dark);
+    color: var(--color-light);
+
+    .footer__content {
+        display: grid;
+        gap: space(6);
+    }
+}
+
+@include up(768) {
+    .footer {
+        margin-top: space(10);
+        padding-top: space(10);
+        padding-bottom: space(10);
+        .footer__content {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

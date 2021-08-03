@@ -1,18 +1,31 @@
 <?php
 $this->title = 'Article';
-
 echo $this->session->show('add_comment');
+
+$title = htmlspecialchars($article->getTitle());
+$content = htmlspecialchars($article->getContent());
+$author = htmlspecialchars($article->getAuthor());
+setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
+$created_at = utf8_encode(strftime('%d %B %Y', strtotime($article->getCreatedAt())))
 ?>
 
-<div>
-    <h2><?= htmlspecialchars($article->getTitle()); ?></h2>
-    <p><?= htmlspecialchars($article->getContent()); ?></p>
-    <p><?= htmlspecialchars($article->getAuthor()); ?></p>
-    <p>Créé le : <?= htmlspecialchars($article->getCreatedAt()); ?></p>
-</div>
-<br>
+<article class="article">
+    <header>
+        <h2 class="text-md"><?php echo $title ?></h2>
+    </header>
+    <section>
+        <p class="text"><?php echo $content ?></p>
+    </section>
+    <footer>
+        <p>
+            Posté le <?php echo $created_at ?> par <?php echo $author ?>.
+        </p>
+    </footer>
+</article>
 
-<a href="/index.php">Retour à l'accueil</a>
+
+
+
 
 <div>
     <h3>Ajouter un commentaire</h3>
@@ -45,4 +58,8 @@ echo $this->session->show('add_comment');
 
     <?php } ?>
     <?php } ?>
+</div>
+
+<div class="page-footer">
+    <a href="/" class="link">Retour à l'accueil</a>
 </div>

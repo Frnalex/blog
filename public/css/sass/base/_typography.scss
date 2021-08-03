@@ -1,6 +1,14 @@
 .text-md {
     font-size: 1.5rem;
     font-family: var(--font-secondary);
+    line-height: 1.2;
+}
+
+.text-lg {
+    font-size: 2.25rem;
+    font-family: var(--font-secondary);
+    font-weight: bold;
+    line-height: 1.2;
 }
 
 .link {
@@ -13,7 +21,26 @@
 }
 
 @include up(768) {
+    .text {
+        font-size: 1.5rem;
+    }
     .text-md {
         font-size: 3rem;
     }
+    .text-lg {
+        font-size: 5rem;
+    }
+    .link {
+        font-size: 1.5rem;
+    }
+    .link-alt {
+        font-size: 1.5rem;
+    }
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+.text-alert {
+    color: var(--color-error);
 }

@@ -6,28 +6,34 @@
 <?php echo $this->session->show('delete_account'); ?>
 <?php echo $this->session->show('need_token'); ?>
 
-<?php if ($this->session->get('pseudo')) { ?>
-<a href="/index.php?route=logout">Déconnexion</a>
-<a href="/index.php?route=profile">Profil</a>
-<?php if ($this->session->get('role') === 'admin') { ?>
-<a href="/index.php?route=administration">Administration</a>
-<?php } ?>
-<?php } else { ?>
-<a href="/index.php?route=register">Inscription</a>
-<a href="/index.php?route=login">Connexion</a>
-<?php } ?>
-
-<?php
-foreach ($articles as $article) {
-?>
-
-<div>
-    <h2><a href="/index.php?route=article&articleId=<?php echo htmlspecialchars($article->getId()) ?>"><?php echo htmlspecialchars($article->getTitle()); ?></a></h2>
-    <p><?php echo htmlspecialchars($article->getContent()); ?></p>
-    <p><?php echo htmlspecialchars($article->getAuthor()); ?></p>
-    <p>Créé le : <?php echo htmlspecialchars($article->getCreatedAt()); ?></p>
+<div class="page-title">
+    <h1 class="text-lg">Je. Suis. Alex.</h1>
+    <p class="text">Développeur front-end avec un goût prononcé pour la création d’interfaces web & mobile.</p>
+    <p class="text">Bienvenue sur mon blog.</p>
 </div>
-<br>
 
-<?php
-}
+
+
+<?php if (count($articles) > 0) { ?>
+
+<div class="articles">
+    <p class="text">Articles</p>
+
+    <?php foreach ($articles as $article) {
+            setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
+            $created_at = utf8_encode(strftime('%d %B %Y', strtotime($article->getCreatedAt())))
+        ?>
+    <div class="article">
+        <h2 class="link article__title"><a href="/index.php?route=article&articleId=<?php echo htmlspecialchars($article->getId()) ?>"><?php echo htmlspecialchars($article->getTitle()); ?></a></h2>
+        <p class="text text-capitalize article__date"><?php echo $created_at; ?></p>
+    </div>
+    <?php } ?>
+
+</div>
+<?php } ?>
+
+
+
+<div class="page-footer">
+    <p class="text">Une question ? <a href="#" class="link">Contactez-moi !</a></p>
+</div>

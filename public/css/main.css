@@ -5,7 +5,7 @@
   --color-error: #fb5151;
   --font: 'Poppins', sans-serif;
   --font-secondary: 'Libre Baskerville', serif;
-  --space: 8px;
+  --space: 0.5rem;
   --container-padding: calc(var(--space) * 3);
   --container-width: calc(100vw - var(--container-padding) * 2);
   --max-width: 1200px;
@@ -192,6 +192,14 @@ textarea {
 .text-md {
   font-size: 1.5rem;
   font-family: var(--font-secondary);
+  line-height: 1.2;
+}
+
+.text-lg {
+  font-size: 2.25rem;
+  font-family: var(--font-secondary);
+  font-weight: bold;
+  line-height: 1.2;
 }
 
 .link {
@@ -204,9 +212,29 @@ textarea {
 }
 
 @media (min-width: 768px) {
+  .text {
+    font-size: 1.5rem;
+  }
   .text-md {
     font-size: 3rem;
   }
+  .text-lg {
+    font-size: 5rem;
+  }
+  .link {
+    font-size: 1.5rem;
+  }
+  .link-alt {
+    font-size: 1.5rem;
+  }
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-alert {
+  color: var(--color-error);
 }
 
 body {
@@ -218,7 +246,7 @@ body {
   word-break: break-word;
   min-height: 100%;
   margin: auto;
-  min-height: 300vh;
+  min-height: 100vh;
   padding-top: 72px;
 }
 
@@ -229,6 +257,32 @@ body {
   margin-left: auto;
   padding-left: calc(50% - var(--container-width) / 2);
   padding-right: calc(50% - var(--container-width) / 2);
+}
+
+.main {
+  padding-top: calc(10 * var(--space));
+}
+
+.page-title {
+  max-width: 600px;
+  margin-bottom: calc(6 * var(--space));
+}
+
+.page-title h1 {
+  margin-bottom: calc(6 * var(--space));
+}
+
+.page-footer {
+  margin-top: calc(6 * var(--space));
+  padding-top: calc(6 * var(--space));
+  border-top: 1px solid var(--color-dark);
+}
+
+@media (min-width: 768px) {
+  .page-footer {
+    margin-top: calc(10 * var(--space));
+    padding-top: calc(10 * var(--space));
+  }
 }
 
 .flex {
@@ -602,6 +656,7 @@ body .ml-5 {
   left: 0;
   width: 100%;
   background-color: var(--color-light);
+  z-index: 99;
 }
 
 .nav-burger {
@@ -737,6 +792,10 @@ body .ml-5 {
           justify-content: center;
 }
 
+.nav a {
+  line-height: 1.6;
+}
+
 .nav .social {
   text-align: right;
 }
@@ -744,5 +803,111 @@ body .ml-5 {
 .nav.open {
   opacity: 1;
   pointer-events: all;
+}
+
+.footer {
+  margin-top: calc(6 * var(--space));
+  padding-top: calc(6 * var(--space));
+  padding-bottom: calc(6 * var(--space));
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+.footer .footer__content {
+  display: -ms-grid;
+  display: grid;
+  gap: calc(6 * var(--space));
+}
+
+@media (min-width: 768px) {
+  .footer {
+    margin-top: calc(10 * var(--space));
+    padding-top: calc(10 * var(--space));
+    padding-bottom: calc(10 * var(--space));
+  }
+  .footer .footer__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.btn {
+  width: 100%;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  padding: calc(2 * var(--space)) calc(4 * var(--space));
+}
+
+.form {
+  display: -ms-grid;
+  display: grid;
+  gap: calc(3 * var(--space));
+}
+
+.form input {
+  width: 100%;
+  padding: calc(2 * var(--space)) calc(3 * var(--space));
+  border: 1px solid var(--color-dark);
+}
+
+.form input::-webkit-input-placeholder {
+  color: var(--color-dark);
+  opacity: 0.5;
+}
+
+.form input:-ms-input-placeholder {
+  color: var(--color-dark);
+  opacity: 0.5;
+}
+
+.form input::-ms-input-placeholder {
+  color: var(--color-dark);
+  opacity: 0.5;
+}
+
+.form input::placeholder {
+  color: var(--color-dark);
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .form {
+    gap: calc(6 * var(--space));
+  }
+}
+
+.articles > p {
+  margin-bottom: calc(4 * var(--space));
+}
+
+.articles .article {
+  margin-bottom: calc(3 * var(--space));
+}
+
+.articles .article:last-of-type {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .articles .article .article__date,
+  .articles .article .article__title {
+    display: inline;
+    margin-right: calc(3 * var(--space));
+  }
+  .articles .article .article__date {
+    white-space: nowrap;
+  }
+}
+
+.article header {
+  margin-bottom: calc(6 * var(--space));
+}
+
+.article footer {
+  margin-top: calc(6 * var(--space));
 }
 /*# sourceMappingURL=main.css.map */

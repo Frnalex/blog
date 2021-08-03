@@ -3,27 +3,37 @@ $this->title = 'Connexion';
 
 include('set_token.php');
 
-echo $this->session->show('error_login');
-echo $this->session->show('need_login');
-
 $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';
 ?>
 
+<div class="page-title">
+    <h1 class="text-lg">Connexion.</h1>
+    <p class="text">Pas de compte ? <a href="/index.php?route=register" class="link">Inscrivez-vous !</a></p>
+</div>
+
 <div>
-    <form method="POST" action="/index.php?route=login">
+    <form class="form" method="POST" action="/index.php?route=login">
 
-        <label for="pseudo">Pseudo</label><br>
-        <input type="text" id="pseudo" name="pseudo" value="<?php echo $pseudo ?>"><br>
+        <?php
+        if ($this->session->get('error_login')) {
+            echo '<p class="text-alert">' . $this->session->show('error_login') . '</p>';
+        }
+        if ($this->session->get('need_login')) {
+            echo '<p class="text-alert">' . $this->session->show('need_login') . '</p>';
+        }
+        ?>
 
-        <label for="password">Mot de passe</label><br>
-        <input type="password" id="password" name="password"><br>
+        <div class="form-group">
+            <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" value="<?php echo $pseudo ?>"><br>
+        </div>
+
+        <div class="form-group">
+            <input type="password" placeholder="Mot de passe" id="password" name="password"><br>
+        </div>
 
         <input name="token" type="hidden" value="<?php echo $this->session->get('token') ?>">
 
-
-        <input type="submit" value="Connexion" id="submit" name="submit">
+        <input class="btn" type="submit" value="Connexion" id="submit" name="submit">
 
     </form>
-
-    <a href="/index.php">Retour à l'accueil</a>
 </div>
