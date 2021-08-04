@@ -32,6 +32,10 @@ body {
     margin-bottom: space(6);
     h1 {
         margin-bottom: space(6);
+        background: url('../../../img/bg-text.jpg');
+        background-attachment: fixed;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 }
 

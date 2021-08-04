@@ -52,7 +52,6 @@ class FrontController extends Controller
                 $this->session->set('register', 'Votre inscription a bien été effectuée');
                 header('Location: /index.php');
             } else {
-                var_dump($errors);
                 return $this->view->render(
                     'register',
                     [
@@ -105,18 +104,13 @@ class FrontController extends Controller
                 $header = "FROM: $name <$email>";
 
                 if (mail($to, $subject, $message, $header)) {
+                    echo 'Votre email a bien été envoyé';
                     $this->session->set('email_send', 'Votre email a bien été envoyé');
-                    // unset($nom);
-                    // unset($prenom);
-                    // unset($email);
-                    // unset($objet);
-                    // unset($message);
                 } else {
+                    echo "Une erreur est survenue, votre mail n'a pas été envoyé";
                     $this->session->set('email_error', "Une erreur est survenue, votre mail n'a pas été envoyé");
                 }
             } else {
-                var_dump($post);
-                var_dump($errors);
                 return $this->view->render(
                     'contact',
                     [

@@ -270,6 +270,10 @@ body {
 
 .page-title h1 {
   margin-bottom: calc(6 * var(--space));
+  background: url("../../../img/bg-text.jpg");
+  background-attachment: fixed;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .page-footer {
