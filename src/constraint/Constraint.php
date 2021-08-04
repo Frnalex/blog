@@ -7,7 +7,7 @@ class Constraint
     public function notBlank($name, $value)
     {
         if (empty($value)) {
-            return '<p>Le champ ' . $name . ' saisi est vide</p>';
+            return 'Le champ ' . $name . ' est vide';
         }
         return null;
     }
@@ -15,7 +15,7 @@ class Constraint
     public function minLength($name, $value, $minSize)
     {
         if (strlen($value) < $minSize) {
-            return '<p>Le champ ' . $name . ' doit contenir au moins ' . $minSize . ' caractères</p>';
+            return 'Le champ ' . $name . ' doit contenir au moins ' . $minSize . ' caractères';
         }
         return null;
     }
@@ -23,7 +23,15 @@ class Constraint
     public function maxLength($name, $value, $maxSize)
     {
         if (strlen($value) > $maxSize) {
-            return '<p>Le champ ' . $name . ' doit contenir au maximum ' . $maxSize . ' caractères</p>';
+            return 'Le champ ' . $name . ' doit contenir au maximum ' . $maxSize . ' caractères';
+        }
+        return null;
+    }
+
+    public function emailValid($value)
+    {
+        if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $value)) {
+            return "L'adresse email n'est pas valide";
         }
         return null;
     }

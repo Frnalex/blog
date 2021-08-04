@@ -24,11 +24,11 @@ $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';
         ?>
 
         <div class="form-group">
-            <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" value="<?php echo $pseudo ?>"><br>
+            <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" value="<?php echo $pseudo ?>">
         </div>
 
         <div class="form-group">
-            <input type="password" placeholder="Mot de passe" id="password" name="password"><br>
+            <input type="password" placeholder="Mot de passe" id="password" name="password">
         </div>
 
         <input name="token" type="hidden" value="<?php echo $this->session->get('token') ?>">

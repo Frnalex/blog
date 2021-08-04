@@ -4,7 +4,6 @@
 <?php echo $this->session->show('logout'); ?>
 <?php echo $this->session->show('login'); ?>
 <?php echo $this->session->show('delete_account'); ?>
-<?php echo $this->session->show('need_token'); ?>
 
 <div class="page-title">
     <h1 class="text-lg">Je. Suis. Alex.</h1>

@@ -10,8 +10,9 @@ class FrontController extends Controller
     {
         $articles = $this->articleDAO->getArticles();
         return $this->view->render(
-            'home', [
-            'articles' => $articles
+            'home',
+            [
+                'articles' => $articles
             ]
         );
     }
@@ -21,9 +22,10 @@ class FrontController extends Controller
         $article = $this->articleDAO->getArticle($articleId);
         $comments = $this->commentDAO->getCommentsFromArticle($articleId);
         return $this->view->render(
-            'single', [
-            'article' => $article,
-            'comments' => $comments,
+            'single',
+            [
+                'article' => $article,
+                'comments' => $comments,
             ]
         );
     }
@@ -50,10 +52,12 @@ class FrontController extends Controller
                 $this->session->set('register', 'Votre inscription a bien été effectuée');
                 header('Location: /index.php');
             } else {
+                var_dump($errors);
                 return $this->view->render(
-                    'register', [
-                    'post' => $post,
-                    'errors' => $errors,
+                    'register',
+                    [
+                        'post' => $post,
+                        'errors' => $errors,
                     ]
                 );
             }
@@ -76,12 +80,53 @@ class FrontController extends Controller
             } else {
                 $this->session->set('error_login', 'Le pseudo ou le mot de passe sont incorrects');
                 return $this->view->render(
-                    'login', [
-                    'post' => $post
+                    'login',
+                    [
+                        'post' => $post
                     ]
                 );
             }
         }
         return $this->view->render('login');
+    }
+
+    public function contact(Parameter $post)
+    {
+        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
+            $errors = $this->validation->validate($post, 'Contact');
+
+            if (!$errors) {
+                $name = $post->get('name');
+                $email = $post->get('email');
+                $message = $post->get('email');
+
+                $to = 'alexandre.fournou@gmail.com';
+                $subject = 'Nouveau message envoyé depuis le blog';
+                $header = "FROM: $name <$email>";
+
+                if (mail($to, $subject, $message, $header)) {
+                    $this->session->set('email_send', 'Votre email a bien été envoyé');
+                    // unset($nom);
+                    // unset($prenom);
+                    // unset($email);
+                    // unset($objet);
+                    // unset($message);
+                } else {
+                    $this->session->set('email_error', "Une erreur est survenue, votre mail n'a pas été envoyé");
+                }
+            } else {
+                var_dump($post);
+                var_dump($errors);
+                return $this->view->render(
+                    'contact',
+                    [
+                        'post' => $post,
+                        'errors' => $errors,
+                    ]
+                );
+            }
+        } else {
+            return $this->view->render('contact');
+        }
     }
 }

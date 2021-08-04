@@ -15,7 +15,7 @@
         <nav class="nav" id="js-nav">
             <ul>
                 <li><a href="/index.php" class="text-md">Accueil.</a></li>
-                <li><a href="#" class="text-md">Contact.</a></li>
+                <li><a href="/index.php?route=contact" class="text-md">Contact.</a></li>
 
                 <?php if ($this->session->get('pseudo')) { ?>
                 <li><a class="text-md" href="/index.php?route=logout">Se déconnecter</a></li>

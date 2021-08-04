@@ -59,6 +59,8 @@ class Router
                     $this->backController->deleteUser($this->request->getGet()->get('userId'), $this->request->getGet()->get('token'));
                 } elseif ($route === 'administration') {
                     $this->backController->administration();
+                } elseif ($route === 'contact') {
+                    $this->frontController->contact($this->request->getPost());
                 } else {
                     $this->errorController->errorNotFound();
                 }

@@ -2,7 +2,7 @@
 include('set_token.php');
 
 $route = isset($post) && $post->get('id') ? 'editArticle&articleId=' . $post->get('id') : 'addArticle';
-$submit = $route === "addArticle" ? 'Envoyer' : "Mettre à jour";
+$value = $route === "addArticle" ? 'Envoyer' : "Mettre à jour";
 $title = isset($post) ? htmlspecialchars($post->get('title')) : '';
 $content = isset($post) ? htmlspecialchars($post->get('content')) : '';
 ?>
@@ -19,6 +19,6 @@ $content = isset($post) ? htmlspecialchars($post->get('content')) : '';
 
     <input name="token" type="hidden" value="<?php echo $this->session->get('token') ?>">
 
-    <input type="submit" value="<?php echo $submit ?>" id="submit" name="submit">
+    <input type="submit" value="<?php echo $value ?>" id="submit" name="submit">
 
 </form>

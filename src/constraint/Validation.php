@@ -18,6 +18,10 @@ class Validation
             $userValidation = new UserValidation();
             return $userValidation->check($data);
         }
+        if ($name === 'Contact') {
+            $contactValidation = new ContactValidation();
+            return $contactValidation->check($data);
+        }
         return null;
     }
 }
