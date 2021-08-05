@@ -272,6 +272,8 @@ body {
   margin-bottom: calc(6 * var(--space));
   background: url("../../../img/bg-text.jpg");
   background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
