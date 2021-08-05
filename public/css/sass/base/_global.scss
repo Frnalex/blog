@@ -30,11 +30,13 @@ body {
 .page-title {
     max-width: 600px;
     margin-bottom: space(6);
+    position: relative;
     h1 {
         margin-bottom: space(6);
         background: url('../../../img/bg-text.jpg');
         background-attachment: fixed;
         background-repeat: no-repeat;
+        background-position: center top;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

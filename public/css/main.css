@@ -266,6 +266,7 @@ body {
 .page-title {
   max-width: 600px;
   margin-bottom: calc(6 * var(--space));
+  position: relative;
 }
 
 .page-title h1 {
@@ -273,6 +274,7 @@ body {
   background: url("../../../img/bg-text.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
+  background-position: center top;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
