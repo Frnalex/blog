@@ -21,10 +21,26 @@ class View
         $this->file = '../templates/' . $template . '.php';
         $content  = $this->renderFile($this->file, $data);
         $view = $this->renderFile(
-            '../templates/base.php', [
-            'title' => $this->title,
-            'content' => $content,
-            'session' => $this->session
+            '../templates/base.php',
+            [
+                'title' => $this->title,
+                'content' => $content,
+                'session' => $this->session
+            ]
+        );
+        echo $view;
+    }
+
+    public function renderAdmin($template, $data = [])
+    {
+        $this->file = '../templates/' . $template . '.php';
+        $content  = $this->renderFile($this->file, $data);
+        $view = $this->renderFile(
+            '../templates/baseAdmin.php',
+            [
+                'title' => $this->title,
+                'content' => $content,
+                'session' => $this->session
             ]
         );
         echo $view;

@@ -1,0 +1,79 @@
+body.admin {
+    padding-top: 0;
+    padding-bottom: space(12);
+    background: var(--color-admin);
+}
+
+.dashboard {
+    margin-top: 100px;
+    display: grid;
+    gap: space(6);
+
+    .card {
+        background-color: var(--color-light);
+        padding: space(4) 0;
+        border-radius: 20px;
+        display: grid;
+        gap: space(3);
+    }
+
+    .card__header {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 1.5rem;
+        padding: 0 space(4);
+
+        img {
+            margin-left: space(2);
+        }
+    }
+
+    .card__body {
+        overflow-x: auto;
+
+        table {
+            min-width: 600px;
+            overflow-x: auto;
+            display: block;
+            padding: 0 space(4);
+        }
+
+        thead {
+            font-weight: 600;
+            font-size: 1.5rem;
+            white-space: nowrap;
+        }
+
+        tr {
+            border-bottom: 1px solid var(--color-dark);
+            &:last-of-type {
+                border-bottom: none;
+            }
+        }
+
+        td,
+        th {
+            padding: 0 space(3);
+            vertical-align: middle;
+
+            &:first-of-type {
+                padding-left: 0;
+                width: 100%;
+            }
+            &:last-of-type {
+                padding-right: 0;
+                display: inline-flex;
+
+                & > * {
+                    margin-right: space(1);
+                }
+            }
+        }
+
+        td {
+            padding-top: space(2);
+            padding-bottom: space(2);
+        }
+    }
+}

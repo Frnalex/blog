@@ -3,6 +3,7 @@
 :root {
     --color-dark: #14141b;
     --color-light: #ffffff;
+    --color-admin: #faf5f5;
 
     --color-success: #83d18b;
     --color-error: #fb5151;
@@ -10,11 +11,9 @@
     --font: 'Poppins', sans-serif;
     --font-secondary: 'Libre Baskerville', serif;
     --space: 0.5rem;
-    // --border-radius: 5px;
     --container-padding: calc(var(--space) * 3);
     --container-width: calc(100vw - var(--container-padding) * 2);
     --max-width: 1200px;
-    // --vh100: calc(var(--vh, 1vh) * 100);
 }
 
 @include up(768) {

@@ -1,6 +1,7 @@
 :root {
   --color-dark: #14141b;
   --color-light: #ffffff;
+  --color-admin: #faf5f5;
   --color-success: #83d18b;
   --color-error: #fb5151;
   --font: 'Poppins', sans-serif;
@@ -237,6 +238,10 @@ textarea {
   color: var(--color-error);
 }
 
+.text-underline {
+  text-decoration: underline;
+}
+
 body {
   color: var(--color-dark);
   background: var(--color-light);
@@ -248,6 +253,7 @@ body {
   margin: auto;
   min-height: 100vh;
   padding-top: 72px;
+  overflow-x: hidden;
 }
 
 .container {
@@ -927,5 +933,98 @@ body .ml-5 {
 
 .article footer {
   margin-top: calc(6 * var(--space));
+}
+
+body.admin {
+  padding-top: 0;
+  padding-bottom: calc(12 * var(--space));
+  background: var(--color-admin);
+}
+
+.dashboard {
+  margin-top: 100px;
+  display: -ms-grid;
+  display: grid;
+  gap: calc(6 * var(--space));
+}
+
+.dashboard .card {
+  background-color: var(--color-light);
+  padding: calc(4 * var(--space)) 0;
+  border-radius: 20px;
+  display: -ms-grid;
+  display: grid;
+  gap: calc(3 * var(--space));
+}
+
+.dashboard .card__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 0 calc(4 * var(--space));
+}
+
+.dashboard .card__header img {
+  margin-left: calc(2 * var(--space));
+}
+
+.dashboard .card__body {
+  overflow-x: auto;
+}
+
+.dashboard .card__body table {
+  min-width: 600px;
+  overflow-x: auto;
+  display: block;
+  padding: 0 calc(4 * var(--space));
+}
+
+.dashboard .card__body thead {
+  font-weight: 600;
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+.dashboard .card__body tr {
+  border-bottom: 1px solid var(--color-dark);
+}
+
+.dashboard .card__body tr:last-of-type {
+  border-bottom: none;
+}
+
+.dashboard .card__body td,
+.dashboard .card__body th {
+  padding: 0 calc(3 * var(--space));
+  vertical-align: middle;
+}
+
+.dashboard .card__body td:first-of-type,
+.dashboard .card__body th:first-of-type {
+  padding-left: 0;
+  width: 100%;
+}
+
+.dashboard .card__body td:last-of-type,
+.dashboard .card__body th:last-of-type {
+  padding-right: 0;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.dashboard .card__body td:last-of-type > *,
+.dashboard .card__body th:last-of-type > * {
+  margin-right: calc(1 * var(--space));
+}
+
+.dashboard .card__body td {
+  padding-top: calc(2 * var(--space));
+  padding-bottom: calc(2 * var(--space));
 }
 /*# sourceMappingURL=main.css.map */

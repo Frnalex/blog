@@ -35,7 +35,7 @@ class BackController extends Controller
             $comments = $this->commentDAO->getFlagComments();
             $users = $this->userDAO->getUsers();
 
-            return $this->view->render(
+            return $this->view->renderAdmin(
                 'administration',
                 [
                     'articles' => $articles,
