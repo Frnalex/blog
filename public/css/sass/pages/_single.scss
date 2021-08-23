@@ -7,3 +7,35 @@
         margin-top: space(6);
     }
 }
+
+.comments {
+    margin-top: space(6);
+    padding-top: space(6);
+    border-top: 1px solid var(--color-dark);
+
+    .add-new {
+        margin-bottom: space(6);
+    }
+
+    .form {
+    }
+
+    &__title {
+        margin-bottom: space(3);
+    }
+
+    .comment {
+        margin-bottom: space(3);
+        &__date {
+            font-size: 1rem;
+            font-style: italic;
+        }
+    }
+}
+
+@include up(768) {
+    .comments {
+        margin-top: space(10);
+        padding-top: space(10);
+    }
+}

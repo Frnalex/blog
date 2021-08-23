@@ -9,6 +9,10 @@ body.admin {
     display: grid;
     gap: space(6);
 
+    .form {
+        max-width: 100%;
+    }
+
     .card {
         background-color: var(--color-light);
         padding: space(4) 0;
@@ -32,11 +36,14 @@ body.admin {
     .card__body {
         overflow-x: auto;
 
+        & > * {
+            padding: 0 space(4);
+        }
+
         table {
+            display: block;
             min-width: 600px;
             overflow-x: auto;
-            display: block;
-            padding: 0 space(4);
         }
 
         thead {

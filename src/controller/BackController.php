@@ -57,7 +57,7 @@ class BackController extends Controller
                     $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
                     header('Location: /index.php?route=administration');
                 }
-                return $this->view->render(
+                return $this->view->renderAdmin(
                     'add_article',
                     [
                         'post' => $post,
@@ -65,7 +65,7 @@ class BackController extends Controller
                     ]
                 );
             }
-            return $this->view->render(
+            return $this->view->renderAdmin(
                 'add_article',
                 [
                     'post' => $post
@@ -86,7 +86,7 @@ class BackController extends Controller
                     $this->session->set('edit_article', 'L\'article a bien été modifié');
                     header('Location: /index.php?route=administration');
                 }
-                return $this->view->render(
+                return $this->view->renderAdmin(
                     'edit_article',
                     [
                         'post' => $post,
@@ -100,7 +100,7 @@ class BackController extends Controller
             $post->set('content', $article->getContent());
             $post->set('author', $article->getAuthor());
 
-            return $this->view->render(
+            return $this->view->renderAdmin(
                 'edit_article',
                 [
                     'post' => $post
@@ -160,6 +160,7 @@ class BackController extends Controller
     public function deleteComment($commentId, $token)
     {
         if ($this->checkAdmin() && $this->checkToken($token)) {
+            echo 'supprimer commentaire';
             $this->commentDAO->deleteComment($commentId);
             $this->session->set('delete_comment', "Le commentaire a bien été supprimé");
             header('Location: /index.php?route=administration');

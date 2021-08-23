@@ -242,6 +242,10 @@ textarea {
   text-decoration: underline;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
 body {
   color: var(--color-dark);
   background: var(--color-light);
@@ -860,6 +864,7 @@ body .ml-5 {
   display: -ms-grid;
   display: grid;
   gap: calc(3 * var(--space));
+  max-width: 600px;
 }
 
 .form input,
@@ -935,6 +940,36 @@ body .ml-5 {
   margin-top: calc(6 * var(--space));
 }
 
+.comments {
+  margin-top: calc(6 * var(--space));
+  padding-top: calc(6 * var(--space));
+  border-top: 1px solid var(--color-dark);
+}
+
+.comments .add-new {
+  margin-bottom: calc(6 * var(--space));
+}
+
+.comments__title {
+  margin-bottom: calc(3 * var(--space));
+}
+
+.comments .comment {
+  margin-bottom: calc(3 * var(--space));
+}
+
+.comments .comment__date {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .comments {
+    margin-top: calc(10 * var(--space));
+    padding-top: calc(10 * var(--space));
+  }
+}
+
 body.admin {
   padding-top: 0;
   padding-bottom: calc(12 * var(--space));
@@ -946,6 +981,10 @@ body.admin {
   display: -ms-grid;
   display: grid;
   gap: calc(6 * var(--space));
+}
+
+.dashboard .form {
+  max-width: 100%;
 }
 
 .dashboard .card {
@@ -977,11 +1016,14 @@ body.admin {
   overflow-x: auto;
 }
 
+.dashboard .card__body > * {
+  padding: 0 calc(4 * var(--space));
+}
+
 .dashboard .card__body table {
+  display: block;
   min-width: 600px;
   overflow-x: auto;
-  display: block;
-  padding: 0 calc(4 * var(--space));
 }
 
 .dashboard .card__body thead {

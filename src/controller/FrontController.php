@@ -30,11 +30,13 @@ class FrontController extends Controller
         );
     }
 
-    public function flagComment($commentId)
+    public function flagComment($commentId, $token)
     {
-        $this->commentDAO->flagComment($commentId);
-        $this->session->set('flag_comment', 'Le commentaire a bien été signalé');
-        header('Location: /index.php');
+        if ($this->checkToken($token)) {
+            $this->commentDAO->flagComment($commentId);
+            $this->session->set('flag_comment', 'Le commentaire a bien été signalé');
+            header('Location: /index.php');
+        }
     }
 
     public function register(Parameter $post)
