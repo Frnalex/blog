@@ -7,5 +7,9 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "*"
+    },
+    "require": {
+        "symfony/dotenv": "^5.3",
+        "swiftmailer/swiftmailer": "^6.2"
     }
 }

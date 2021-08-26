@@ -1,5 +1,8 @@
 <?php
 $this->title = 'Contact';
+echo $this->session->show('email_send');
+echo $this->session->show('email_error');
+
 
 include('set_token.php');
 

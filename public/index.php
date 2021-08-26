@@ -1,9 +1,12 @@
 <?php
 
 use App\config\Router;
+use Symfony\Component\Dotenv\Dotenv;
 
-require '../config/dev.php';
 require "../vendor/autoload.php";
+
+$dotenv = new Dotenv();
+$dotenv->loadEnv('../.env');
 
 session_start();
 

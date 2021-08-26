@@ -3,9 +3,9 @@
 namespace App\src\controller;
 
 use App\config\Parameter;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+use Swift_Mailer;
+use Swift_Message;
+use Swift_SmtpTransport;
 
 class FrontController extends Controller
 {
@@ -102,19 +102,32 @@ class FrontController extends Controller
             if (!$errors) {
                 $name = $post->get('name');
                 $email = $post->get('email');
-                $message = $post->get('email');
+                $message = $post->get('message');
 
-                $to = 'alexandre.fournou@gmail.com';
-                $subject = 'Nouveau message envoyé depuis le blog';
-                $header = "FROM: $name <$email>";
+                // Create the Transport
+                $transport = (new Swift_SmtpTransport($_ENV["SMTP_HOST"], $_ENV["SMTP_PORT"]))
+                    ->setUsername($_ENV["SMTP_USERNAME"])
+                    ->setPassword($_ENV["SMTP_PASSWORD"]);
 
-                if (mail($to, $subject, $message, $header)) {
-                    echo 'Votre email a bien été envoyé';
+                // Create the Mailer using your created Transport
+                $mailer = new Swift_Mailer($transport);
+
+                // Create a message
+                $message = (new Swift_Message('Nouveau message reçu depuis le blog'))
+                    ->setFrom([$email => $name])
+                    ->setTo(['alexandre.fournou@gmail.com' => 'Alexandre Fournou'])
+                    ->setBody($message);
+
+                // Send the message
+                $result = $mailer->send($message);
+
+                if ($result) {
                     $this->session->set('email_send', 'Votre email a bien été envoyé');
                 } else {
-                    echo "Une erreur est survenue, votre mail n'a pas été envoyé";
                     $this->session->set('email_error', "Une erreur est survenue, votre mail n'a pas été envoyé");
                 }
+
+                header('Location: /index.php?route=contact');
             } else {
                 return $this->view->render(
                     'contact',
@@ -124,8 +137,7 @@ class FrontController extends Controller
                     ]
                 );
             }
-        } else {
-            return $this->view->render('contact');
         }
+        return $this->view->render('contact');
     }
 }
