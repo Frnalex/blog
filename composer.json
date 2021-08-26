@@ -7,8 +7,5 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "*"
-    },
-    "require": {
-        "swiftmailer/swiftmailer": "6.0"
     }
 }

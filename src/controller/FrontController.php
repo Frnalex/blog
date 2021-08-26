@@ -3,6 +3,9 @@
 namespace App\src\controller;
 
 use App\config\Parameter;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class FrontController extends Controller
 {
