@@ -71,7 +71,8 @@ class FrontController extends Controller
 
     public function login(Parameter $post)
     {
-        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
+        if ($post->get('submit')) {
+            $this->checkToken($post->get('token'));
             $result = $this->userDAO->login($post);
 
             if ($result && $result['isPasswordValid']) {
@@ -82,15 +83,14 @@ class FrontController extends Controller
                 header('Location: /index.php');
             } else {
                 $this->session->set('error_login', 'Le pseudo ou le mot de passe sont incorrects');
-                return $this->view->render(
-                    'login',
-                    [
-                        'post' => $post
-                    ]
-                );
             }
         }
-        return $this->view->render('login');
+        return $this->view->render(
+            'login',
+            [
+                'post' => $post
+            ]
+        );
     }
 
     public function contact(Parameter $post)
