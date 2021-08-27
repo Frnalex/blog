@@ -44,6 +44,7 @@ class FrontController extends Controller
 
     public function register(Parameter $post)
     {
+        $errors = [];
         if ($post->get('submit') && $this->checkToken($post->get('token'))) {
             $errors = $this->validation->validate($post, 'User');
 
@@ -56,18 +57,15 @@ class FrontController extends Controller
                 $this->userDAO->register($post);
                 $this->session->set('register', 'Votre inscription a bien été effectuée');
                 header('Location: /index.php');
-            } else {
-                return $this->view->render(
-                    'register',
-                    [
-                        'post' => $post,
-                        'errors' => $errors,
-                    ]
-                );
             }
-        } else {
-            return $this->view->render('register');
         }
+        return $this->view->render(
+            'register',
+            [
+                'post' => $post,
+                'errors' => $errors,
+            ]
+        );
     }
 
     public function login(Parameter $post)

@@ -8,6 +8,7 @@ use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
 use App\src\DAO\UserDAO;
 use App\src\model\View;
+use Exception;
 
 abstract class Controller
 {
@@ -37,8 +38,8 @@ abstract class Controller
     {
         if (!$this->session->get('token') || $this->session->get('token') != $token) {
             $this->session->set('need_token', 'Le token a expiré');
-        } else {
-            return true;
+            throw new Exception("Le token a expiré");
         }
+        return true;
     }
 }
