@@ -95,46 +95,21 @@ class FrontController extends Controller
 
     public function contact(Parameter $post)
     {
-        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
+        $errors = [];
+        if ($post->get('submit')) {
+            $this->checkToken($post->get('token'));
             $errors = $this->validation->validate($post, 'Contact');
 
             if (!$errors) {
-                $name = $post->get('name');
-                $email = $post->get('email');
-                $message = $post->get('message');
-
-                // Create the Transport
-                $transport = (new Swift_SmtpTransport($_ENV["SMTP_HOST"], $_ENV["SMTP_PORT"]))
-                    ->setUsername($_ENV["SMTP_USERNAME"])
-                    ->setPassword($_ENV["SMTP_PASSWORD"]);
-
-                // Create the Mailer using your created Transport
-                $mailer = new Swift_Mailer($transport);
-
-                // Create a message
-                $message = (new Swift_Message('Nouveau message reçu depuis le blog'))
-                    ->setFrom([$email => $name])
-                    ->setTo(['alexandre.fournou@gmail.com' => 'Alexandre Fournou'])
-                    ->setBody($message);
-
-                // Send the message
-                $result = $mailer->send($message);
-
-                if ($result) {
-                    $this->session->set('email_send', 'Votre email a bien été envoyé');
-                } else {
-                    $this->session->set('email_error', "Une erreur est survenue, votre mail n'a pas été envoyé");
-                }
-            } else {
-                return $this->view->render(
-                    'contact',
-                    [
-                        'post' => $post,
-                        'errors' => $errors,
-                    ]
-                );
+                $this->sendMail($post->get('name'), $post->get('email'), $post->get('message'));
             }
         }
-        return $this->view->render('contact');
+        return $this->view->render(
+            'contact',
+            [
+                'post' => $post,
+                'errors' => $errors,
+            ]
+        );
     }
 }
