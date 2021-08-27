@@ -2,6 +2,8 @@
 
 namespace App\src\constraint;
 
+use Exception;
+
 class Validation
 {
     public function validate($data, $name)
@@ -22,6 +24,6 @@ class Validation
             $contactValidation = new ContactValidation();
             return $contactValidation->check($data);
         }
-        return null;
+        throw new Exception("Rien à valider de ce côté");
     }
 }
