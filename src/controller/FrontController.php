@@ -126,8 +126,6 @@ class FrontController extends Controller
                 } else {
                     $this->session->set('email_error', "Une erreur est survenue, votre mail n'a pas été envoyé");
                 }
-
-                header('Location: /index.php?route=contact');
             } else {
                 return $this->view->render(
                     'contact',

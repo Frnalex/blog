@@ -160,7 +160,6 @@ class BackController extends Controller
     public function deleteComment($commentId, $token)
     {
         if ($this->checkAdmin() && $this->checkToken($token)) {
-            echo 'supprimer commentaire';
             $this->commentDAO->deleteComment($commentId);
             $this->session->set('delete_comment', "Le commentaire a bien été supprimé");
             header('Location: /index.php?route=administration');
