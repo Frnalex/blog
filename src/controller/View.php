@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\model;
+namespace App\src\controller;
 
 use App\config\Request;
 
@@ -45,7 +45,6 @@ class View
         );
         echo $view;
     }
-
 
 
     private function renderFile($file, $data)

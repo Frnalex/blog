@@ -3,9 +3,6 @@
 namespace App\src\controller;
 
 use App\config\Parameter;
-use Swift_Mailer;
-use Swift_Message;
-use Swift_SmtpTransport;
 
 class FrontController extends Controller
 {
