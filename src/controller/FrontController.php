@@ -45,7 +45,8 @@ class FrontController extends Controller
     public function register(Parameter $post)
     {
         $errors = [];
-        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
+        if ($post->get('submit')) {
+            $this->checkToken($post->get('token'));
             $errors = $this->validation->validate($post, 'User');
 
             //Check si le pseudo existe déjà
