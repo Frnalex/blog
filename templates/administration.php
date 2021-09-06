@@ -85,7 +85,9 @@ echo $this->session->show('delete_user');
                 </tbody>
             </table>
             <?php } else { ?>
-            Aucun commentaire n'a été signalé
+            <p class="px-3">
+                Aucun commentaire n'a été signalé
+            </p>
             <?php } ?>
         </div>
     </div>
@@ -109,7 +111,7 @@ echo $this->session->show('delete_user');
 
                 <tbody>
                     <?php foreach ($users as $user) {
-                        $created_at = utf8_encode(strftime('%d-%m-%Y', strtotime($article->getCreatedAt())))
+                        $created_at = utf8_encode(strftime('%d-%m-%Y', strtotime($user->getCreatedAt())))
                     ?>
                     <tr>
                         <td><?php echo htmlspecialchars($user->getPseudo()) ?></td>
