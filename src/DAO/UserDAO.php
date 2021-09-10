@@ -1,9 +1,9 @@
 <?php
 
-namespace App\src\DAO;
+namespace App\Src\DAO;
 
-use App\config\Parameter;
-use App\src\model\User;
+use App\Config\Parameter;
+use App\Src\model\User;
 
 class UserDAO extends DAO
 {

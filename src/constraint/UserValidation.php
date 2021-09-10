@@ -1,8 +1,8 @@
 <?php
 
-namespace App\src\constraint;
+namespace App\Src\Constraint;
 
-use App\config\Parameter;
+use App\Config\Parameter;
 
 class UserValidation extends Validation
 {

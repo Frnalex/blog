@@ -1,10 +1,10 @@
 <?php
 
-namespace App\config;
+namespace App\Config;
 
-use App\src\controller\BackController;
-use App\src\controller\FrontController;
-use App\src\controller\ErrorController;
+use App\Src\Controller\BackController;
+use App\Src\Controller\FrontController;
+use App\Src\Controller\ErrorController;
 use Exception;
 
 class Router
@@ -70,7 +70,7 @@ class Router
         } catch (Exception $e) {
             $this->errorController->errorServer();
 ?>
-<pre>
+            <pre>
     <?php
             print_r($e);
     ?>
