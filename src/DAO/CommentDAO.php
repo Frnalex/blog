@@ -1,9 +1,9 @@
 <?php
 
-namespace App\src\DAO;
+namespace App\Src\DAO;
 
-use App\src\model\Comment;
-use App\config\Parameter;
+use App\Src\model\Comment;
+use App\Config\Parameter;
 
 class CommentDAO extends DAO
 {
@@ -36,10 +36,11 @@ class CommentDAO extends DAO
     {
         $sql = 'INSERT INTO comment (content, createdAt,flag, article_id, user_id) VALUES (?, NOW(), 0, ?, ?)';
         $this->createQuery(
-            $sql, [
-            $post->get('content'),
-            $articleId,
-            $userId
+            $sql,
+            [
+                $post->get('content'),
+                $articleId,
+                $userId
             ]
         );
     }

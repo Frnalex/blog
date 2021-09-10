@@ -1,6 +1,6 @@
 <?php
 
-use App\config\Router;
+use App\Config\Router;
 use Symfony\Component\Dotenv\Dotenv;
 
 require "../vendor/autoload.php";

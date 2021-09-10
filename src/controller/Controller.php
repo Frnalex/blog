@@ -1,13 +1,13 @@
 <?php
 
-namespace App\src\controller;
+namespace App\Src\Controller;
 
-use App\config\Request;
-use App\src\constraint\Validation;
-use App\src\DAO\ArticleDAO;
-use App\src\DAO\CommentDAO;
-use App\src\DAO\UserDAO;
-use App\src\controller\View;
+use App\Config\Request;
+use App\Src\Constraint\Validation;
+use App\Src\DAO\ArticleDAO;
+use App\Src\DAO\CommentDAO;
+use App\Src\DAO\UserDAO;
+use App\Src\Controller\View;
 use Exception;
 use Swift_Mailer;
 use Swift_Message;

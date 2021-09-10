@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\DAO;
+namespace App\Src\DAO;
 
 use PDO;
 use Exception;

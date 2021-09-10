@@ -1,8 +1,8 @@
 <?php
 
-namespace App\src\controller;
+namespace App\Src\Controller;
 
-use App\config\Parameter;
+use App\Config\Parameter;
 
 class FrontController extends Controller
 {

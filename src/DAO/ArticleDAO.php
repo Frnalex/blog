@@ -1,9 +1,9 @@
 <?php
 
-namespace App\src\DAO;
+namespace App\Src\DAO;
 
-use App\config\Parameter;
-use App\src\model\Article;
+use App\Config\Parameter;
+use App\Src\model\Article;
 
 class ArticleDAO extends DAO
 {
@@ -21,7 +21,7 @@ class ArticleDAO extends DAO
 
     public function getArticles()
     {
-        $sql = 'SELECT article.id, article.title, article.content, user.pseudo, article.createdAt FROM article INNER JOIN user ON article.user_id = user.id ORDER BY article.id DESC';
+        $sql = 'SELECT article.id, article.title, article.content, user.pseudo, article.createdAt FROM article INNER JOIN user ON article.user_id = user.id ORDER BY article.createdAt';
         $result = $this->createQuery($sql);
         $articles = [];
         foreach ($result as $row) {
