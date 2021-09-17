@@ -3,7 +3,7 @@
 namespace App\Src\DAO;
 
 use App\Config\Parameter;
-use App\Src\model\Article;
+use App\Src\Model\Article;
 
 class ArticleDAO extends DAO
 {

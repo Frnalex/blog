@@ -2,7 +2,7 @@
 
 namespace App\Src\DAO;
 
-use App\Src\model\Comment;
+use App\Src\Model\Comment;
 use App\Config\Parameter;
 
 class CommentDAO extends DAO

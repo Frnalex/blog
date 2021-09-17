@@ -3,7 +3,7 @@
 namespace App\Src\DAO;
 
 use App\Config\Parameter;
-use App\Src\model\User;
+use App\Src\Model\User;
 
 class UserDAO extends DAO
 {
