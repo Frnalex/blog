@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Src\DAO;
+namespace Alex\Src\DAO;
 
-use App\Src\Model\Comment;
-use App\Config\Parameter;
+use Alex\Src\Model\Comment;
+use Alex\Config\Parameter;
 
 class CommentDAO extends DAO
 {

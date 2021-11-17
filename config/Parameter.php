@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Config;
+namespace Alex\Config;
 
 class Parameter
 {
@@ -16,6 +16,7 @@ class Parameter
         if (isset($this->parameter[$name])) {
             return $this->parameter[$name];
         }
+
         return null;
     }
 

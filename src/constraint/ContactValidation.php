@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Src\Constraint;
+namespace Alex\Src\Constraint;
 
-use App\Config\Parameter;
+use Alex\Config\Parameter;
 
 class ContactValidation extends Validation
 {
@@ -19,18 +19,19 @@ class ContactValidation extends Validation
         foreach ($post->all() as $key => $value) {
             $this->checkField($key, $value);
         }
+
         return $this->errors;
     }
 
     private function checkField($name, $value)
     {
-        if ($name === 'name') {
+        if ('name' === $name) {
             $error = $this->checkName($name, $value);
             $this->addError($name, $error);
-        } elseif ($name === 'email') {
+        } elseif ('email' === $name) {
             $error = $this->checkEmail($name, $value);
             $this->addError($name, $error);
-        } elseif ($name === 'message') {
+        } elseif ('message' === $name) {
             $error = $this->checkMessage($name, $value);
             $this->addError($name, $error);
         }
@@ -40,7 +41,7 @@ class ContactValidation extends Validation
     {
         if ($error) {
             $this->errors += [
-                $name => $error
+                $name => $error,
             ];
         }
     }
@@ -50,6 +51,7 @@ class ContactValidation extends Validation
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('nom', $value);
         }
+
         return null;
     }
 
@@ -61,6 +63,7 @@ class ContactValidation extends Validation
         if ($this->constraint->emailValid($value)) {
             return $this->constraint->emailValid('email', $value);
         }
+
         return null;
     }
 
@@ -69,6 +72,7 @@ class ContactValidation extends Validation
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('message', $value);
         }
+
         return null;
     }
 }

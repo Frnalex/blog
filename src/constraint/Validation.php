@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Src\Constraint;
+namespace Alex\Src\Constraint;
 
 use Exception;
 

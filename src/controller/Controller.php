@@ -1,35 +1,31 @@
 <?php
 
-namespace App\Src\Controller;
+namespace Alex\Src\Controller;
 
-use App\Config\Request;
-use App\Src\Constraint\Validation;
-use App\Src\DAO\ArticleDAO;
-use App\Src\DAO\CommentDAO;
-use App\Src\DAO\UserDAO;
-use App\Src\Controller\View;
+use Alex\Config\Request;
+use Alex\Src\Constraint\Validation;
+use Alex\Src\DAO\ArticleDAO;
+use Alex\Src\DAO\CommentDAO;
+use Alex\Src\DAO\UserDAO;
 use Exception;
-use Swift_Mailer;
-use Swift_Message;
-use Swift_SmtpTransport;
 
 abstract class Controller
 {
     protected $articleDAO;
     protected $commentDAO;
     protected $userDAO;
-    protected $view;
     protected $get;
     protected $post;
     protected $session;
     protected $validation;
+    private $file;
+    private $title;
 
     public function __construct()
     {
         $this->articleDAO = new ArticleDAO();
         $this->commentDAO = new CommentDAO();
         $this->userDAO = new UserDAO();
-        $this->view = new View();
         $this->validation = new Validation();
         $request = new Request();
         $this->get = $request->getGet();
@@ -41,34 +37,72 @@ abstract class Controller
     {
         if (!$this->session->get('token') || $this->session->get('token') != $token) {
             $this->session->set('need_token', 'Le token a expiré');
-            throw new Exception("Le token a expiré");
+
+            throw new Exception('Le token a expiré');
         }
+
         return true;
     }
 
-    public function sendMail($name, $email, $message)
+    public function checkLoggedIn()
     {
-        // Create the Transport
-        $transport = (new Swift_SmtpTransport($_ENV["SMTP_HOST"], $_ENV["SMTP_PORT"]))
-            ->setUsername($_ENV["SMTP_USERNAME"])
-            ->setPassword($_ENV["SMTP_PASSWORD"]);
-
-        // Create the Mailer using your created Transport
-        $mailer = new Swift_Mailer($transport);
-
-        // Create a message
-        $message = (new Swift_Message('Nouveau message reçu depuis le blog'))
-            ->setFrom([$email => $name])
-            ->setTo(['alexandre.fournou@gmail.com' => 'Alexandre Fournou'])
-            ->setBody($message);
-
-        // Send the message
-        $result = $mailer->send($message);
-
-        if ($result) {
-            $this->session->set('email_send', 'Votre email a bien été envoyé');
-        } else {
-            $this->session->set('email_error', "Une erreur est survenue, votre mail n'a pas été envoyé");
+        if (!$this->session->get('pseudo')) {
+            throw new Exception("L'utilisateur n'est pas connecté");
         }
+
+        return true;
+    }
+
+    public function checkAdmin()
+    {
+        $this->checkLoggedIn();
+        if (!('admin' === $this->session->get('role'))) {
+            throw new Exception("L'utilisateur ne dispose pas des droits nécessaires pour accéder à cette page");
+        }
+
+        return true;
+    }
+
+    public function render($template, $data = [])
+    {
+        $this->file = '../templates/'.$template.'.php';
+        $content = $this->renderFile($this->file, $data);
+        $view = $this->renderFile(
+            '../templates/base.php',
+            [
+                'title' => $this->title,
+                'content' => $content,
+                'session' => $this->session,
+            ]
+        );
+        echo $view;
+    }
+
+    public function renderAdmin($template, $data = [])
+    {
+        $this->file = '../templates/'.$template.'.php';
+        $content = $this->renderFile($this->file, $data);
+        $view = $this->renderFile(
+            '../templates/baseAdmin.php',
+            [
+                'title' => $this->title,
+                'content' => $content,
+                'session' => $this->session,
+            ]
+        );
+        echo $view;
+    }
+
+    private function renderFile($file, $data)
+    {
+        if (file_exists($file)) {
+            extract($data);
+            ob_start();
+
+            include $file;
+
+            return ob_get_clean();
+        }
+        header('Location: index.php?route=notFound');
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Src\Constraint;
+namespace Alex\Src\Constraint;
 
-use App\Config\Parameter;
+use Alex\Config\Parameter;
 
 class CommentValidation extends Validation
 {

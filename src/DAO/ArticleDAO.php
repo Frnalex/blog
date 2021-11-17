@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Src\DAO;
+namespace Alex\Src\DAO;
 
-use App\Config\Parameter;
-use App\Src\Model\Article;
+use Alex\Config\Parameter;
+use Alex\Src\Model\Article;
 
 class ArticleDAO extends DAO
 {
-
     public function buildObject($row)
     {
         $article = new Article();
@@ -16,6 +15,7 @@ class ArticleDAO extends DAO
         $article->setContent($row['content']);
         $article->setAuthor($row['pseudo']);
         $article->setCreatedAt($row['createdAt']);
+
         return $article;
     }
 
@@ -29,16 +29,17 @@ class ArticleDAO extends DAO
             $articles[$articleId] = $this->buildObject($row);
         }
         $result->closeCursor();
+
         return $articles;
     }
-
 
     public function getArticle($articleId)
     {
         $sql = 'SELECT article.id, article.title, article.content, user.pseudo, article.createdAt FROM article INNER JOIN user ON article.user_id = user.id WHERE article.id = ?';
-        $result =  $this->createQuery($sql, [$articleId]);
+        $result = $this->createQuery($sql, [$articleId]);
         $article = $result->fetch();
         $result->closeCursor();
+
         return $this->buildObject($article);
     }
 
@@ -64,7 +65,7 @@ class ArticleDAO extends DAO
                 'title' => $post->get('title'),
                 'content' => $post->get('content'),
                 'userId' => $userId,
-                'articleId' => $articleId
+                'articleId' => $articleId,
             ]
         );
     }

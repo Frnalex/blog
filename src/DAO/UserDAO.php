@@ -1,23 +1,12 @@
 <?php
 
-namespace App\Src\DAO;
+namespace Alex\Src\DAO;
 
-use App\Config\Parameter;
-use App\Src\Model\User;
+use Alex\Config\Parameter;
+use Alex\Src\Model\User;
 
 class UserDAO extends DAO
 {
-
-    private function buildObject($row)
-    {
-        $user = new User();
-        $user->setId($row['id']);
-        $user->setPseudo($row['pseudo']);
-        $user->setCreatedAt($row['createdAt']);
-        $user->setRole($row['name']);
-        return $user;
-    }
-
     public function getUsers()
     {
         $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
@@ -28,6 +17,7 @@ class UserDAO extends DAO
             $users[$userId] = $this->buildObject($row);
         }
         $result->closeCursor();
+
         return $users;
     }
 
@@ -44,14 +34,13 @@ class UserDAO extends DAO
         );
     }
 
-
     public function checkUser(Parameter $post)
     {
         $sql = 'SELECT COUNT(pseudo) FROM user WHERE pseudo = ?';
         $result = $this->createQuery(
             $sql,
             [
-                $post->get('pseudo')
+                $post->get('pseudo'),
             ]
         );
         $isUnique = $result->fetchColumn();
@@ -60,25 +49,24 @@ class UserDAO extends DAO
         }
     }
 
-
     // Requête pour vérifier que le pseudo existe et que le mot de passe correspond
     public function login(Parameter $post)
     {
-        $sql = "SELECT user.id, user.role_id, user.password, role.name FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?";
+        $sql = 'SELECT user.id, user.role_id, user.password, role.name FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
         $data = $this->createQuery($sql, [$post->get('pseudo')]);
         $result = $data->fetch();
 
         if ($result) {
-            $isPasswordValid = password_verify($post->get('password'), $result["password"]);
+            $isPasswordValid = password_verify($post->get('password'), $result['password']);
+
             return [
                 'result' => $result,
                 'isPasswordValid' => $isPasswordValid,
             ];
-        } else {
-            return null;
         }
-    }
 
+        return null;
+    }
 
     public function updatePassword(Parameter $post, $pseudo)
     {
@@ -87,11 +75,10 @@ class UserDAO extends DAO
             $sql,
             [
                 password_hash($post->get('password'), PASSWORD_BCRYPT),
-                $pseudo
+                $pseudo,
             ]
         );
     }
-
 
     public function deleteAccount($userId)
     {
@@ -113,5 +100,16 @@ class UserDAO extends DAO
         //supprime le compte
         $sql = 'DELETE FROM user WHERE id = ?';
         $this->createQuery($sql, [$userId]);
+    }
+
+    private function buildObject($row)
+    {
+        $user = new User();
+        $user->setId($row['id']);
+        $user->setPseudo($row['pseudo']);
+        $user->setCreatedAt($row['createdAt']);
+        $user->setRole($row['name']);
+
+        return $user;
     }
 }

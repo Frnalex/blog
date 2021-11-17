@@ -33,6 +33,7 @@ $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';
 
         <input name="token" type="hidden" value="<?php echo $this->session->get('token') ?>">
 
+
         <input class="btn" type="submit" value="Connexion" id="submit" name="submit">
 
     </form>

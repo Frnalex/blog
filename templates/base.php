@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ?></title>
+    <title><?php echo $title; ?></title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,15 +18,15 @@
 
 <body>
 
-    <?php include('header.php') ?>
+    <?php include 'header.php'; ?>
 
     <main class="main">
         <div class="container">
-            <?php echo $content ?>
+            <?php echo $content; ?>
         </div>
     </main>
 
-    <?php include('footer.php') ?>
+    <?php include 'footer.php'; ?>
     <script src="/js/script.js"></script>
 </body>
 

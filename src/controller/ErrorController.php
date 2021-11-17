@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Src\Controller;
+namespace Alex\Src\Controller;
 
 class ErrorController extends Controller
 {
     public function errorNotFound()
     {
-        return $this->view->render('error_404');
+        return $this->render('error_404');
     }
 
     public function errorServer()
     {
-        return $this->view->render('error_500');
+        return $this->render('error_500');
     }
 }

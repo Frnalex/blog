@@ -1,10 +1,10 @@
 <?php
 $this->title = 'Inscription';
 
-include('set_token.php');
+include 'set_token.php';
 
 $pseudo = isset($post) ? htmlspecialchars($post->get('pseudo')) : '';
-$erreur_pseudo = isset($errors) &&  isset($errors['pseudo']) ? $errors['pseudo'] : '';
+$erreur_pseudo = isset($errors) && isset($errors['pseudo']) ? $errors['pseudo'] : '';
 ?>
 
 
@@ -19,19 +19,22 @@ $erreur_pseudo = isset($errors) &&  isset($errors['pseudo']) ? $errors['pseudo']
     <form class="form" method="POST" action="/index.php?route=register">
 
         <div class="form-group">
-            <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" value="<?php echo $pseudo ?>">
+            <input type="text" placeholder="Pseudo" id="pseudo" name="pseudo" value="<?php echo $pseudo; ?>">
 
             <?php if ($erreur_pseudo) { ?>
-            <p class="text-alert"><?php echo $erreur_pseudo ?></p>
+            <p class="text-alert"><?php echo $erreur_pseudo; ?></p>
             <?php } ?>
 
         </div>
 
         <div class="form-group">
             <input type="password" placeholder="Mot de passe" id="password" name="password">
+            <?php if (isset($errors['password'])) { ?>
+                <p class="text-alert"><?php echo $errors['password']; ?></p>
+            <?php } ?>
         </div>
 
-        <input name="token" type="hidden" value="<?php echo $this->session->get('token') ?>">
+        <input name="token" type="hidden" value="<?php echo $this->session->get('token'); ?>">
 
         <input class="btn" type="submit" value="Inscription" id="submit" name="submit">
     </form>
