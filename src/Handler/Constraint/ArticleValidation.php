@@ -1,6 +1,6 @@
 <?php
 
-namespace Alex\Src\Constraint;
+namespace Alex\Src\Handler\Constraint;
 
 use Alex\Config\Parameter;
 
@@ -19,15 +19,16 @@ class ArticleValidation extends Validation
         foreach ($post->all() as $key => $value) {
             $this->checkField($key, $value);
         }
+
         return $this->errors;
     }
 
     private function checkField($name, $value)
     {
-        if ($name === 'title') {
+        if ('title' === $name) {
             $error = $this->checkTitle($name, $value);
             $this->addError($name, $error);
-        } elseif ($name === 'content') {
+        } elseif ('content' === $name) {
             $error = $this->checkContent($name, $value);
             $this->addError($name, $error);
         }
@@ -37,7 +38,7 @@ class ArticleValidation extends Validation
     {
         if ($error) {
             $this->errors += [
-                $name => $error
+                $name => $error,
             ];
         }
     }
@@ -53,6 +54,7 @@ class ArticleValidation extends Validation
         if ($this->constraint->maxLength($name, $value, 255)) {
             return $this->constraint->maxLength('titre', $value, 255);
         }
+
         return null;
     }
 
@@ -64,6 +66,7 @@ class ArticleValidation extends Validation
         if ($this->constraint->minLength($name, $value, 2)) {
             return $this->constraint->minLength('contenu', $value, 2);
         }
+
         return null;
     }
 }

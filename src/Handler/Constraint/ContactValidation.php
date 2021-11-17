@@ -1,6 +1,6 @@
 <?php
 
-namespace Alex\Src\Constraint;
+namespace Alex\Src\Handler\Constraint;
 
 use Alex\Config\Parameter;
 

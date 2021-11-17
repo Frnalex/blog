@@ -3,7 +3,7 @@
 namespace Alex\Src\Handler;
 
 use Alex\Config\Request;
-use Alex\Src\Constraint\Validation;
+use Alex\Src\Handler\Constraint\Validation;
 use Alex\Src\Service\Security;
 
 abstract class Handler
