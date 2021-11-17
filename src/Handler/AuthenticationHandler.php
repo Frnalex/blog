@@ -16,6 +16,7 @@ class AuthenticationHandler extends Handler
 
     public function register($post)
     {
+        $this->security->checkToken($post->get('token'));
         $errors = $this->validation->validate($post, 'User');
 
         //Check si le pseudo existe déjà
@@ -34,6 +35,7 @@ class AuthenticationHandler extends Handler
 
     public function login($post)
     {
+        $this->security->checkToken($post->get('token'));
         $result = $this->userDAO->login($post);
 
         if ($result && $result['isPasswordValid']) {
@@ -57,6 +59,7 @@ class AuthenticationHandler extends Handler
 
     public function updatePassword($post)
     {
+        $this->security->checkToken($post->get('token'));
         $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
         $this->session->set('update_password', 'Le mot de passe a bien été modifié');
         header('Location: /index.php?route=profile');

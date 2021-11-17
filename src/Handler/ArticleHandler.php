@@ -16,6 +16,7 @@ class ArticleHandler extends Handler
 
     public function add($post)
     {
+        $this->security->checkToken($post->get('token'));
         $errors = $this->validation->validate($post, 'Article');
 
         if ($errors) {
@@ -29,6 +30,7 @@ class ArticleHandler extends Handler
 
     public function edit($post, $articleId)
     {
+        $this->security->checkToken($post->get('token'));
         $errors = $this->validation->validate($post, 'Article');
 
         if ($errors) {
@@ -40,8 +42,9 @@ class ArticleHandler extends Handler
         header('Location: /index.php?route=administration');
     }
 
-    public function delete($articleId)
+    public function delete($articleId, $token)
     {
+        $this->security->checkToken($token);
         $this->articleDAO->deleteArticle($articleId);
         $this->session->set('delete_article', "L'article a bien été supprimé");
         header('Location: /index.php?route=administration');

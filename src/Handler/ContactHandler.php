@@ -16,6 +16,7 @@ class ContactHandler extends Handler
 
     public function contact($post)
     {
+        $this->security->checkToken($post->get('token'));
         $errors = $this->validation->validate($post, 'Contact');
 
         if ($errors) {

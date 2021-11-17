@@ -3,16 +3,25 @@
 namespace Alex\Src\Controller;
 
 use Alex\Config\Parameter;
+use Alex\Src\DAO\ArticleDAO;
+use Alex\Src\DAO\CommentDAO;
+use Alex\Src\DAO\UserDAO;
 use Alex\Src\Handler\ContactHandler;
 
 class PageController extends Controller
 {
     private $contactHandler;
+    private $articleDAO;
+    private $commentDAO;
+    private $userDAO;
 
     public function __construct()
     {
         parent::__construct();
         $this->contactHandler = new ContactHandler();
+        $this->articleDAO = new ArticleDAO();
+        $this->commentDAO = new CommentDAO();
+        $this->userDAO = new UserDAO();
     }
 
     public function home()
@@ -31,7 +40,6 @@ class PageController extends Controller
     {
         $errors = [];
         if ($post->get('submit')) {
-            $this->checkToken($post->get('token'));
             $errors = $this->contactHandler->contact($post);
         }
 
@@ -46,7 +54,7 @@ class PageController extends Controller
 
     public function administration()
     {
-        $this->checkAdmin();
+        $this->security->checkAdmin();
         $articles = $this->articleDAO->getArticles();
         $comments = $this->commentDAO->getFlagComments();
         $users = $this->userDAO->getUsers();

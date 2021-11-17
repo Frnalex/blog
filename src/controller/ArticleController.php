@@ -3,16 +3,22 @@
 namespace Alex\Src\Controller;
 
 use Alex\Config\Parameter;
+use Alex\Src\DAO\ArticleDAO;
+use Alex\Src\DAO\CommentDAO;
 use Alex\Src\Handler\ArticleHandler;
 
 class ArticleController extends Controller
 {
     private $articleHandler;
+    private $articleDAO;
+    private $commentDAO;
 
     public function __construct()
     {
         parent::__construct();
         $this->articleHandler = new ArticleHandler();
+        $this->articleDAO = new ArticleDAO();
+        $this->commentDAO = new CommentDAO();
     }
 
     public function showArticle($articleId)
@@ -31,9 +37,9 @@ class ArticleController extends Controller
 
     public function addArticle(Parameter $post)
     {
-        $this->checkAdmin();
+        $this->security->checkAdmin();
         $errors = [];
-        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
+        if ($post->get('submit')) {
             $errors = $this->articleHandler->add($post);
         }
 
@@ -48,11 +54,11 @@ class ArticleController extends Controller
 
     public function editArticle(Parameter $post, $articleId)
     {
-        $this->checkAdmin();
+        $this->security->checkAdmin();
         $article = $this->articleDAO->getArticle($articleId);
 
         $errors = [];
-        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
+        if ($post->get('submit')) {
             $errors = $this->articleHandler->edit($post, $articleId);
         }
 
@@ -72,8 +78,7 @@ class ArticleController extends Controller
 
     public function deleteArticle($articleId, $token)
     {
-        $this->checkAdmin();
-        $this->checkToken($token);
-        $this->articleHandler->delete($articleId);
+        $this->security->checkAdmin();
+        $this->articleHandler->delete($articleId, $token);
     }
 }

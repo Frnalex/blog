@@ -18,7 +18,7 @@ class AuthenticationController extends Controller
     public function register(Parameter $post)
     {
         $errors = [];
-        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
+        if ($post->get('submit')) {
             $errors = $this->authenticationHandler->register($post);
         }
 
@@ -33,7 +33,7 @@ class AuthenticationController extends Controller
 
     public function login(Parameter $post)
     {
-        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
+        if ($post->get('submit')) {
             $this->authenticationHandler->login($post);
         }
 
@@ -47,15 +47,15 @@ class AuthenticationController extends Controller
 
     public function logout()
     {
-        $this->checkLoggedIn();
+        $this->security->checkLoggedIn();
         $this->authenticationHandler->logout();
     }
 
     public function updatePassword(Parameter $post)
     {
-        $this->checkLoggedIn();
+        $this->security->checkLoggedIn();
 
-        if ($post->get('submit') && $this->checkToken($post->get('token'))) {
+        if ($post->get('submit')) {
             $this->authenticationHandler->updatePassword($post);
         }
 
